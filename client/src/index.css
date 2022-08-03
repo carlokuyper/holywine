@@ -16,6 +16,28 @@ a{
   color: white;
   text-decoration: none;
 }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  outline: 3px solid #FFFFFF;
+  border-radius: 3px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #222126; 
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #302F34; 
+}
 
 .main-img-con{
   width: 100%;
