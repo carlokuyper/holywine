@@ -1,13 +1,91 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+html{
+  scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #131519;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+.main-img-con{
+  width: 100%;
+  height: 75%;
+  margin-top: 2.5%;
+  float: left;
+  background-color: #131519;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.img-con{
+  width: 100%;
+  height: 700px;
+  float: left;
+  background-image: linear-gradient(to bottom, rgba(78, 78, 78, 0.25), rgba(0, 0, 0, 0.50)), url(https://img.freepik.com/free-photo/glass-red-wine-bottle-bar-counter_107420-65845.jpg?w=900&t=st=1659347047~exp=1659347647~hmac=41106be1fd91997fec9953e27b27c33338ed975cadd3f341ac63e1df548ad8a4);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: left center;
+}
+
+.text-con{
+  width: 40%;
+  margin-top: 25%;
+  float: right;
+}
+
+.main-text{
+  width: 100%;
+  float: left;
+  margin: 0;
+}
+
+.class-button-cart{
+  border-radius: 10px;
+  background-color: #D32748;
+  padding: 1.5%;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+  float: left;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.divider{
+  height: 10%;
+  width: 81%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  margin-left: 10%;
+  float: left;
+  border-radius: 5px;
+  background-color: #222126;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.divider-text{
+  margin-left: 3%;
+}
+
+.card {
+  float: left;
+  width: 33.333%;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  border: 0;
+}
+
+.card > img {
+  margin-bottom: .75rem;
+}
+
+.card-text {
+  font-size: 85%;
 }

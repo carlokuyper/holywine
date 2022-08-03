@@ -1,0 +1,131 @@
+.checkout-item-con {
+    width: 70%;
+    height: 200px;
+    margin-right: 1%;
+    margin-top: .5%;
+    margin-bottom: .5%;
+    background-color: #222126;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.checkout-pay {
+    width: 29%;
+    height: auto;
+    padding-bottom: 1%;
+    float: right;
+    margin-top: .5%;
+    margin-bottom: .5%;
+    background-color: #222126;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+    
+}
+
+.checkout-stats {
+    height: 100%;
+    width: 60%;
+    margin: 0;
+    float: left;
+}
+
+.checkout-wine-img {
+    height: 92%;
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.checkout-text {
+    float: left;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 45%;
+}
+
+.checkout-link-text {
+    float: left;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 45%;
+    color: #2798D3;
+}
+
+
+.checkout-pay-title{
+    float: left;
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 100%;
+}
+
+.checkout-total-price {
+    width: 100%;
+    
+    float: left;
+}
+
+.checkout-total {
+    float: left;
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 3%;
+    
+}
+
+.checkout-total-nr {
+    float: right;
+    margin: 0;
+    margin-top: 5%;
+    margin-right: 3%;
+    font-weight: bold;
+}
+
+.checkout-product-button {
+    width: 90%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.checkout-text-right {
+    float: right;
+    margin: 0;
+    margin-top: 5%;
+}
+
+.checkout-delete-con {
+    float: right;
+    width: 100%;
+    margin-top: 22.5%;
+    margin-right: 3%;
+}
+
+.checkout-edit-img {
+    width: 7%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 4%;
+}
+
+.checkout-options-con {
+    float: right;
+    height: 50%;
+    width: 35%;
+    margin: 0;
+
+    margin-right: 2%;
+}

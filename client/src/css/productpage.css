@@ -1,0 +1,132 @@
+.product-holder{
+    width: 55%;
+    height: 450px;
+    float: left;
+    margin-left: 10%;
+    margin-top: 5%;
+    border-radius: 5px;
+    background-color: #222126;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.product-wine-img{
+    height: 96%;
+    margin-top: .75%;
+    margin-left: .75%;
+    float: left;
+    border-radius: 5px;
+}
+
+.product-title{
+    float: left;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 50%;
+}
+
+.product-link-text{
+    float: left;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 50%;
+    color: #2798D3;
+}
+
+.rating-con{
+    width: 50%;
+    height: 10%;
+    float: left;
+    margin-left: 2%;
+    margin-top: 3%;
+}
+
+.star-icon{
+    width: 4.5%;
+    float: left;
+    margin-top: 3%;
+}
+
+.rating-text{
+    float: left;
+    display: inline;
+    margin-left: 4%;
+    margin-top: 4%;
+}
+
+.product-description{
+    float: left;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 50%;
+}
+
+.product-des{
+    float: left;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 50%;
+}
+
+.prodcut-cart{
+    width: 25%;
+    height: 450px;
+    float: left;
+    margin-left: 1%;
+    margin-top: 5%;
+    border-radius: 5px;
+    background-color: #222126;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.product-price{
+    float: left;
+    margin: 0;
+    margin-top: 7.5%;
+    margin-left: 20%;
+    width: 50%;
+}
+
+.product-delivery{
+    float: left;
+    margin: 0;
+    margin-top: 7.5%;
+    margin-bottom: 7.5%;
+    margin-left: 20%;
+    width: 50%;
+}
+
+.product-variations{
+    float: left;
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 20%;
+    width: 50%;
+}
+
+
+.product-select{
+    float: left;
+    width: 60%;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 20%;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+.cart-button{
+    width: 60%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 10%;
+    margin-left: 20%;
+}

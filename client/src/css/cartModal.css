@@ -1,0 +1,42 @@
+.cart-card-con{
+    width: 95%;
+    height: 60px;
+    margin-left: 2%;
+}
+
+.cart-card-img{
+    height: 100%;
+    float: left;
+    border-radius: 5px;
+}
+
+.cart-tex-con{
+    width: 55%;
+    float: left;
+}
+
+.cart-left-text {
+    float: left;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 100%;
+    color: black;
+}
+
+.cart-left-text-link {
+    float: left;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 100%;
+    color: #2798D3;
+    text-decoration: underline;
+}
+
+.cart-delete{
+    height: 40%;
+    float: left;
+    margin-left: 15%;
+    margin-top: 5%;
+}

@@ -1,0 +1,68 @@
+.page-title{
+    margin-top: 5%;
+    margin-left: 10%;
+    float: left;
+}
+
+.order-holder-con {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: -1%;
+    float: left;
+}
+
+.order-holder {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 1%;
+    border-radius: 5px;
+    background-color: #222126;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px 0;
+}
+
+.info-con {
+    width: 21.5%;
+    height: 15%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 5px;
+    float: left;
+    margin-left: 2.5%;
+    margin-top: 2%;
+}
+
+.order-info {
+    float: left;
+    margin-top: 2.75%;
+    margin-left: 5%;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 94%;
+    margin-left: 2.5%;
+    margin-top: 6%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 5px;
+}
+
+td, th {
+    border: 1px solid;
+    text-align: left;
+    padding: 8px;
+    border-left: none;
+    border-right: none;
+    border-radius: 5px;
+}   
+
+.dispatch-btn{
+    color: #2798D3;
+    float: right;
+    margin-top: 1%;
+    margin-right: 3.5%;
+}

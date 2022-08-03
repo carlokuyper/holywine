@@ -1,0 +1,88 @@
+.login-con{
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.726), rgba(0, 0, 0, 0.808)), url(https://images.unsplash.com/photo-1562601579-599dec564e06?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: left center;
+}
+
+.sign-logo{
+    height: 8%;
+    float: left;
+    margin-left: 10%;
+    margin-top: 2%;
+}  
+
+.signin-con{
+    width: 40%;
+    height: 50%;
+    margin-top: 10%;
+    margin-left: 15%;
+    background-color: rgba(10, 10, 10, 0.856);
+    float: left;
+}
+
+.sing-title{
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 45%;
+}
+
+.sign-text{
+    float: left;
+    width: 50%;
+    margin: 0;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    margin-left: 25%;
+}
+
+.singbar{
+    height:6%;
+    width: 50%;
+    padding-left: 1%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+  
+    margin-top: 1.25%;
+    margin-left: 25%;
+  
+    background-image:url('https://cdn-icons-png.flaticon.com/512/546/546394.png');
+    background-repeat:no-repeat;
+    background-position: 2% 50%;;  
+    background-size: 4.5%;
+    padding-left: 30px;
+}
+
+.passbar{
+    height:6%;
+    width: 50%;
+    padding-left: 25%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+  
+    margin-top: 1.25%;
+    margin-left: 25%;
+  
+    background-image:url('https://cdn-icons.flaticon.com/png/512/2889/premium/2889676.png?token=exp=1659384039~hmac=52819566ef2c12b71e023d9d352c1fda');
+    background-repeat:no-repeat;
+    background-position: 2% 50%;;  
+    background-size: 4.5%;
+    padding-left: 30px;
+}
+
+.sign-button{
+    width: 54%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 5%;
+    margin-left: 25%;
+}

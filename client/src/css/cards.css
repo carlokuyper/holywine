@@ -1,0 +1,65 @@
+#big-card-con {
+    width: 85%;
+    margin-left: 10%;
+    float: left;
+}
+
+.card-con-horizontal {
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.item-con {
+    width: 23%;
+    height: 200px;
+    margin-right: 1%;
+    margin-top: .5%;
+    margin-bottom: .5%;
+    background-color: #222126;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.wine-img {
+    height: 95%;
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.left-text {
+    float: left;
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 45%;
+}
+
+.left-link-text {
+    float: left;
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 45%;
+    color: #2798D3;
+}
+
+
+
+.view-product-button {
+    width: 40%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 10%;
+    margin-left: 5%;
+}

@@ -1,0 +1,171 @@
+.stock-holder-con {
+    width: 85%;
+    margin-left: 10%;
+    margin-top: -1%;
+    float: left;
+}
+
+.edit-top-con{
+    height: 85%;
+}
+
+.stock-con{
+    width: 23%;
+    height: 150px; 
+    margin-right: 1%; 
+    margin-top: .5%; 
+    margin-bottom: .5%;
+    background-color: #222126;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+
+.stock-divider{
+    height: 10%;
+    width: 80.5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    margin-left: 10%;
+    float: left;
+    border-radius: 5px;
+    background-color: #222126;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+}
+  
+.stock-divider-text{
+    margin-left: 3%;
+}
+
+.stock-wine-img{
+    height: 95%;
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.stock-left{
+    float: left;
+    width: 50%;
+    margin: 0;
+    margin-top: 4%;
+    margin-left: 3%;
+}
+
+.stock-nr-con{
+    width: 65%;
+    float: left;
+    margin-left: 3%;
+    margin-top: 4%;
+}
+
+.stock-left-1{
+    float: left;
+    margin: 0;
+    margin-right: 3%;
+}
+
+.edit-con{
+    width: 55%;
+    float: right;
+}
+
+.edit-img{
+    width: 17%;
+    float: right;
+    margin-left: 13%;
+}
+
+
+.stock-modal{
+    width: 81%;
+    height: 117vh;
+    background-color: rgba(0, 0, 0, 0.644);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+.edit-stock-con{
+    background-color: #222126;
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+    margin-top: 10%;
+    border-radius: 10px;
+}
+
+.edit-stock-wine-img{
+    height: 92%;
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.edit-input{
+    height:6%;
+    width: 55%;
+    padding-left: 1%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+  
+    margin-top: 1.25%;
+    margin-left: 3%;
+}
+
+.edit-input-description{
+    height:20%;
+    width: 55%;
+    padding-left: 1%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+  
+    margin-top: 1.25%;
+    margin-left: 3%;
+    font-size: 16px;
+}
+
+.small-edit-con{
+    width: 16.5%;
+    float: left;
+    margin-left: 3%;
+    margin-top: 3%;
+}
+
+.edit-input-small{
+    height: 30px;
+    width: 100%;
+    padding-left: 5%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+  
+    margin-top: 5%;
+    margin-left: 3%;
+}
+
+.edit-button{
+    width: 20%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.delete-button{
+    color: #2798D3;
+    float: left;
+    margin-top: 2%;
+    margin-left: 2.5%;
+    font-size: 18px;
+}
