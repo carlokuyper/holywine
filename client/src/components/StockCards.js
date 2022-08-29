@@ -1,18 +1,70 @@
+import React, { useState } from 'react'
 import '../index.css';
 import '../css/stock.css';
 import StockModal from './StockModal';
-import React, { useState } from 'react'
 import { useEffect } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const StockCards = (props) => {
+
+    // Handle Modal
     const [modal, setModal] = useState();
-    const editPost = () => {
-        setModal(<StockModal upRender={props.rerender} rerender={setModal} original={props.message} id={props.uniqueId} />)
-      }
+
+    let navigate = useNavigate();
+
+    const toProduct = () => { 
+    sessionStorage.setItem('productId', props.productId);
+    navigate('/productPage');
+    }
+
+    const editPost = () =>{
+    setModal(<StockModal 
+      close={setModal} 
+      id={props.productId} 
+      productName={props.productName} 
+      productBrand={props.productBrand} 
+      productDescription={props.productDescription} 
+      price={props.price}
+
+      storageLocation={props.storageLocation}
+      vintageFiveYears={props.vintageFiveYears}
+      vintageTenYears={props.vintageTenYears}
+      vintageTwelveYears={props.vintageTwelveYears}
+
+      variationsFlavour1={props.variationsFlavour1}
+      variationsFlavour2={props.variationsFlavour2}
+      variationsFlavour3={props.variationsFlavour3}
+
+      sizeSingle={props.sizeSingle}
+      sizeBox={props.sizeBox}
+      sizeBarrel={props.sizeBarrel}
+    />);
+    }
+
+    const deleteItem = () => {
+      console.log(props.productId);
+
+      if (window.confirm("Are you sure you want to delete: " + props.productName) === true) {
+          Axios.delete('http://localhost:5000/api/deleteproduct/' + props.productId)
+          .then((res)=> {
+            if(res){
+              console.log("Deleted:" + props.productName);
+              props.editRender(true);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+      } 
+    }
+      
+    const closeModal = () => {
+      props.close();
+    }
+
     return (
-        <>
-        
+    <>
         {modal}
         <div className="stock-con">
         
@@ -26,7 +78,7 @@ const StockCards = (props) => {
 
             <div className='stock-nr-con' >
                 <p className='stock-left-1'>Stock: </p>
-                <p className='stock-left-1'>28</p>
+                <p className='stock-left-1'>{props.stock}</p>
                 <div className='edit-con'>
                     <img src='./images/edit.png' className='edit-img' onClick={editPost}/> 
                     <img src='./images/delete.png' className='edit-img' />   
@@ -36,7 +88,7 @@ const StockCards = (props) => {
 
         </div>
         </>
-    );
+    )
 }
 
 export default StockCards;

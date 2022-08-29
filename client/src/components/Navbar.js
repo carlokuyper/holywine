@@ -10,11 +10,11 @@ const Navbar = () => {
             <a href='/'><img className="logo" src="./images/logo.png"/></a>
             
 
-            <div class="dropdown">
+            <div className="dropdown">
                 <img src='./images/julian-wan-WNoLnJo7tS8-unsplash.jpg' className="dropbtn nav-user"/>
             
                 
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                     <a href="/login">Sign Out</a>
                     <a href="#">Profile</a>
 
@@ -25,11 +25,11 @@ const Navbar = () => {
             </div>
 
             
-            <div class="cart-dropdown">
+            <div className="cart-dropdown">
                 <img className="cart-icon" src="./images/addtocart.png"/>
             
                 
-                <div class="cart-dropdown-content">
+                <div className="cart-dropdown-content">
                     <div className='divHover'><CartModal /></div>
                     <div className='divHover'><CartModal /></div>
                     <div className='divHover'><CartModal /></div>
