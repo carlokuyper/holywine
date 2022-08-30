@@ -2,7 +2,7 @@ const express = require('express');
 const router = express();
 const multer = require('multer');
 const path = require('path');
-const productSchema = require('./models/addProduct');
+const productSchema = require('./models/newProduct');
 const userSchema = require('./models/users');
 const orderSchema = require('./models/orders');
 
@@ -22,36 +22,40 @@ const productImageStore = multer.diskStorage({
 const uploadProductImage = multer({storage: productImageStore});
 
 //This is where all PRODUCTS will be managed
-router.post('/api/addProduct', uploadProductImage.single('image') ,(req, res) =>{
+router.post('/api/newProduct', uploadProductImage.single('image'), (req, res) =>{
     
     let data = JSON.parse(req.body.information);
     console.log(req.file.filename);
 
-    const addProduct = new productSchema ({
-        productName: data.body.productName,
-        productBrand: data.body.productBrand,
-        productDescription: data.body.productDescription,
-        price: data.body.price,
-        storageLocation: data.body.storageLocation,
+    const newProduct = new productSchema ({
+        productName: data.productName,
+        productBrand: data.productBrand,
+        productDescription: data.productDescription,
+        price: data.price,
+        storageLocation: data.storageLocation,
+        age: data.age,
+        flavours: data.flavours,
+        sizes: data.sizes,
         stock: data.stock, 
         vintage: {
-            fiveYears: data.vintage.fiveYears,
-            tenYears: data.vintage.tenYears,
-            twelveYears: data.vintage.twelveYears,
+            vintage1: data.vintage.vintage1,
+            vintage2: data.vintage.vintage2,
+            vintage3: data.vintage.vintage3,
         },
         variations: {
-            flavour1: data.body.flavour1,
-            flavour2: data.body.flavour2,
-            flavour3: data.body.flavour3,
+            flavour1: data.variations.flavour1,
+            flavour2: data.variations.flavour2,
+            flavour3: data.variations.flavour3,
         },
         size: {
-            single: data.body.single,
-            box: data.body.box,
-            barrel: data.body.barrel,
-        }
+            size1: data.size.size1,
+            size2: data.size.size2,
+            size3: data.size.size3,
+        },
+        image: req.file.filename
     });
 
-    addProduct.save()
+    newProduct.save()
     .then(item => {
         res.json(item);
     })
@@ -73,10 +77,11 @@ router.get ('/api/oneProducts/:id', async (req, res) => {
 
 router.patch ('/api/updateProducts/:id', async (req, res) => {
     console.log(req.body);
-    let age = +req.body.fiveYears + +req.body.tenYears + +req.body.twelveYears;
+    let age = +req.body.vintage1 + +req.body.vintage2 + +req.body.vintage3;
     let flavours = +req.body.flavour1 + +req.body.flavour2 + +req.body.flavour3;
-    let sizes = +req.body.single + +req.body.box + +req.body.barrel;
+    let sizes = +req.body.size1 + +req.body.size2 + +req.body.size3;
     let stock = +age + +flavours + +sizes;
+    
     const findProduct = await productSchema.updateOne(
         {_id:req.params.id},
         {$set: {
@@ -85,11 +90,14 @@ router.patch ('/api/updateProducts/:id', async (req, res) => {
                 productDescription: req.body.productDescription,
                 price: req.body.price,
                 storageLocation: req.body.storageLocation,
+                age: age,
+                flavours: flavours,
+                sizes: sizes,
                 stock: stock,
                 vintage: {
-                    fiveYears: req.body.fiveYears,
-                    tenYears: req.body.tenYears,
-                    twelveYears: req.body.twelveYears,
+                    vintage1: req.body.vintage1,
+                    vintage2: req.body.vintage2,
+                    vintage3: req.body.vintage3,
                 },
                 variations: {
                     flavour1: req.body.flavour1,
@@ -97,9 +105,9 @@ router.patch ('/api/updateProducts/:id', async (req, res) => {
                     flavour3: req.body.flavour3,
                 },
                 size: {
-                    single: req.body.single,
-                    box: req.body.box,
-                    barrel: req.body.barrel,
+                    size1: req.body.size1,
+                    size2: req.body.size2,
+                    size3: req.body.size3,
                 }
             }
         }

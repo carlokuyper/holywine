@@ -8,87 +8,91 @@ import { useNavigate } from "react-router-dom";
 
 const StockCards = (props) => {
 
-    // Handle Modal
-    const [modal, setModal] = useState();
+  // Handle Modal
+  const [modal, setModal] = useState();
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
-    const toProduct = () => { 
-    sessionStorage.setItem('productId', props.productId);
-    navigate('/productPage');
-    }
+  const editPost = () =>{
+  setModal(<StockModal 
+    close={setModal} 
+    productId={props.productId} 
+    productName={props.productName} productBrand={props.productBrand} productDescription={props.productDescription} price={props.price} storageLocation={props.storageLocation} 
+          
+    age={props.age} flavours={props.flavours} sizes={props.sizes} stock={props.stock} image={props.image}
 
-    const editPost = () =>{
-    setModal(<StockModal 
-      close={setModal} 
-      id={props.productId} 
-      productName={props.productName} 
-      productBrand={props.productBrand} 
-      productDescription={props.productDescription} 
-      price={props.price}
+    vintage1={props.vintage1} vintage2={props.vintage2} vintage3={props.vintage3}
+    flavour1={props.flavour1} flavour2={props.flavour2} flavour3={props.flavour3}
+    size1={props.size1} size2={props.size2} size3={props.size3} 
+    editRender={props.editRender}
+  />);
+  }
 
-      storageLocation={props.storageLocation}
-      vintageFiveYears={props.vintageFiveYears}
-      vintageTenYears={props.vintageTenYears}
-      vintageTwelveYears={props.vintageTwelveYears}
+  const deleteItem = () => {
+  if (window.confirm("Are you sure you want to delete: " + props.productName) === true) {
+      Axios.delete('http://localhost:5000/api/deleteProducts/' + props.productId)
+        .then((res)=> {
+          if(res){
+            console.log("Deleted:" + props.productName);
+            props.editRender(true);
+          }
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+    } 
+  }
+    
+  const closeModal = () => {
+    props.close();
+  }
 
-      variationsFlavour1={props.variationsFlavour1}
-      variationsFlavour2={props.variationsFlavour2}
-      variationsFlavour3={props.variationsFlavour3}
+  const [imgURL, setImgUrl] = useState ();
 
-      sizeSingle={props.sizeSingle}
-      sizeBox={props.sizeBox}
-      sizeBarrel={props.sizeBarrel}
-    />);
-    }
+  let id = props.productId;
 
-    const deleteItem = () => {
-      console.log(props.productId);
+  useEffect(()=>{
+    Axios.get('http://localhost:5000/api/oneProducts/' + id)
+    .then(res => {
+        let data = res.data;
+                  
+        let URL = 'http://localhost:5000/productImages/' + data.image;
 
-      if (window.confirm("Are you sure you want to delete: " + props.productName) === true) {
-          Axios.delete('http://localhost:5000/api/deleteproduct/' + props.productId)
-          .then((res)=> {
-            if(res){
-              console.log("Deleted:" + props.productName);
-              props.editRender(true);
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-      } 
-    }
-      
-    const closeModal = () => {
-      props.close();
-    }
+        // console.log(id)
 
-    return (
+        setImgUrl(URL);
+    
+      })
+  }, []);
+
+  return (
     <>
-        {modal}
-        <div className="stock-con">
-        
-            <img className='stock-wine-img' src='./brett-jordan-fAz5Cf1ajPM-unsplash.jpg' />
-            <p className='stock-left'>Sauvignon Blanc</p>
-            <p className='stock-left'>Simonsig</p>
-            <div className='stock-nr-con' >
-                <p className='stock-left-1'>Rating: </p>
-                <p className='stock-left-1'>2.5</p>
-            </div>
+      {modal}
+      <div className="stock-con">
+          {/* <img className='stock-wine-img' src='./brett-jordan-fAz5Cf1ajPM-unsplash.jpg' /> */}
+          <img className='stock-wine-img' src={imgURL} />
+          
+          <p className='stock-left'>{props.productName}</p>
+          <p className='stock-left'>{props.productBrand}</p>
+          <div className='stock-nr-con' >
+              <p className='stock-left-1'>Rating: </p>
+              <p className='stock-left-1'>2.5</p>
+          </div>
 
-            <div className='stock-nr-con' >
-                <p className='stock-left-1'>Stock: </p>
-                <p className='stock-left-1'>{props.stock}</p>
-                <div className='edit-con'>
-                    <img src='./images/edit.png' className='edit-img' onClick={editPost}/> 
-                    <img src='./images/delete.png' className='edit-img' />   
-                </div>
-            </div>
-            
+          <div className='stock-nr-con' >
+              <p className='stock-left-1'>Stock: </p>
+              <p className='stock-left-1'>{props.stock}</p>
+              <div className='edit-con'>
+                  <img src='./images/edit.png' className='edit-img' onClick={editPost}/> 
+                  <img src='./images/delete.png' className='edit-img' onClick={deleteItem} />   
+              </div>
+              
+          </div>
+          
 
-        </div>
-        </>
-    )
+      </div>
+    </>
+  )
 }
 
 export default StockCards;

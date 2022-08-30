@@ -10,8 +10,8 @@ import StockAddModal from "./StockAddModal";
 
 const Stock = (props) => {
 
+    //Add product modal 
     const [modal, setModal] = useState();
-
     
     const addProductModal = () =>{
         setModal(<StockAddModal 
@@ -46,15 +46,24 @@ const Stock = (props) => {
         .then(res =>{
             let data = res.data;
             const productItem = data.map((item)=> <StockCards key={item._id} productId={item._id} 
-       
+            
+            productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription} price={item.price} storageLocation={item.storageLocation} 
+            age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={props.image}
+
+            vintage1={item.vintage.vintage1} vintage2={item.vintage.vintage2} vintage3={item.vintage.vintage3}
+            flavour1={item.variations.flavour1} flavour2={item.variations.flavour2} flavour3={item.variations.flavour3}
+            size1={item.size.size1} size2={item.size.size2} size3={item.size.size3}            
+
             editRender={setRenderProducts}/>);
             setReadProducts(productItem);
             setRenderProducts(false);
         });
     }, [renderProducts]);
+    
+    let images=props.image;
+    console.log(images)
 
-
-    let defaultFormVals = ["productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "variation1", "variation2", "variation3", "size1", "size2", "size3"];
+    let defaultFormVals = ["productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
 
     const [formValues, setFormValues] = useState(defaultFormVals);
     const [imageName, setImageName] = useState("Name of File will appear here");
@@ -92,7 +101,7 @@ const Stock = (props) => {
 
     const payloadData = new FormData();
     var age = +formValues['vintage1'] + +formValues['vintage2'] + +formValues['vintage3'];
-    var flavours = +formValues['variation1'] + +formValues['variation2'] + +formValues['variation3'];
+    var flavours = +formValues['flavour1'] + +formValues['flavour2'] + +formValues['flavour3'];
     var sizes = +formValues['size1'] + +formValues['size2'] + +formValues['size3'];
     var stock = age + flavours + sizes;
 
@@ -107,19 +116,19 @@ const Stock = (props) => {
         sizes: sizes,
         stock: stock,
         vintage: {
-            fiveYears: +formValues['vintage1'],
-            tenYears: +formValues['vintage2'],
-            twelveYears: +formValues['vintage3'],
+            vintage1: +formValues['vintage1'],
+            vintage2: +formValues['vintage2'],
+            vintage3: +formValues['vintage3'],
         },
         variations: {
-            flavour1: +formValues['variation1'],
-            flavour2: +formValues['variation2'],
-            flavour3: +formValues['variation3'],
+            flavour1: +formValues['flavour1'],
+            flavour2: +formValues['flavour2'],
+            flavour3: +formValues['flavour3'],
         },
         size: {
-            single: +formValues['size1'],
-            box: +formValues['size2'],
-            barrel: +formValues['size3'],
+            size1: +formValues['size1'],
+            size2: +formValues['size2'],
+            size3: +formValues['size3'],
         }
     }
 
@@ -128,14 +137,14 @@ const Stock = (props) => {
 
     Axios.post('http://localhost:5000/api/newProduct', payloadData)
     .then((res)=> {
-    if(res){
-        console.log("Item Added"); 
-        setRenderProducts(true);
-    }
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
+        if(res){
+            console.log("Item Added"); 
+            setRenderProducts(true);
+        }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
 
     }
 
@@ -144,7 +153,9 @@ const Stock = (props) => {
             <Navbar/>
             {modal}
             <h1 className="page-title">Products</h1>
-            <button className='add-product-button' onClick={addProductModal}>Add new Product</button>
+            <button variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></button>
+            <div className='add-product-button' onClick={addProductModal}>Add new Product</div>
+            
             
             <div className="stock-divider">
                 <p className="stock-divider-text">

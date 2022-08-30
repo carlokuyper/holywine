@@ -6,7 +6,7 @@
 }
 
 .edit-top-con{
-    height: 85%;
+    height: 95%;
 }
 
 .stock-con{
@@ -43,6 +43,8 @@
     margin-left: 1.5%;
     float: left;
     border-radius: 5px;
+    max-width: 30%;
+    object-fit: cover;
 }
 
 .stock-left{
@@ -51,6 +53,29 @@
     margin: 0;
     margin-top: 4%;
     margin-left: 3%;
+}
+
+.stock-left1{
+    float: left;
+    width: 100%;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 15px;
+}
+
+.stock-left2{
+    float: left;
+    width: 100%;
+    margin: 0;
+    margin-left: 15px;
+}
+
+.stock-left-name{
+    float: left;
+    width: 30%;
+    margin: 0;
+    margin-left: 15px;
+    font-size: 14px;
 }
 
 .stock-nr-con{
@@ -79,8 +104,8 @@
 
 
 .stock-modal{
-    width: 81%;
-    height: 117vh;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.644);
     position: absolute;
     top: 0;
@@ -91,82 +116,104 @@
 .edit-stock-con{
     background-color: #222126;
     width: 50%;
-    height: 50%;
-    margin-left: 25%;
-    margin-top: 10%;
+    height: auto;
+    padding: 1%;
+    margin-left: 22%;
+    margin-top: 5%;
     border-radius: 10px;
+    float: left;
 }
 
+
 .edit-stock-wine-img{
-    height: 92%;
+    height: 400px;
+    width: 90%;
     margin-top: 1.5%;
     margin-left: 1.5%;
     float: left;
-    border-radius: 5px;
+    border-radius: 15px;
+
+    background-color: #f7f7f7;
+    float: left;
+    max-width: 90%;
+    object-fit: cover;
 }
 
 .edit-input{
     height:6%;
-    width: 55%;
+    width: 90%;
     padding-left: 1%;
     border-radius: 6px;
     border: none;
     float: left;
-  
     margin-top: 1.25%;
     margin-left: 3%;
 }
 
 .edit-input-description{
     height:20%;
-    width: 55%;
+    width: 92%;
     padding-left: 1%;
     border-radius: 6px;
     border: none;
     float: left;
-  
     margin-top: 1.25%;
-    margin-left: 3%;
+    margin-left: 15px;
     font-size: 16px;
 }
 
 .small-edit-con{
-    width: 16.5%;
+    width: 100%;
     float: left;
-    margin-left: 3%;
+    margin-top: 3%;
+}
+.small-edit-con1{
+    width: 49%;
+    float: left;
     margin-top: 3%;
 }
 
 .edit-input-small{
     height: 30px;
-    width: 100%;
+    width: 24%;
     padding-left: 5%;
     border-radius: 6px;
     border: none;
     float: left;
-  
-    margin-top: 5%;
-    margin-left: 3%;
+    margin-top: 1.5%;
+    margin-left: 15px;
+}
+
+.edit-input-small1{
+    height: 30px;
+    width: 85%;
+    padding-left: 5%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+    margin-top: 1.5%;
+    margin-left: 15px;
 }
 
 .edit-button{
-    width: 20%;
     padding-top: 1%;
     padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
     text-align: center;
-
+    color: white;
     background-color: #D32748;
     border-radius: 10px;
     float: left;
-    margin-top: 1%;
+    margin-top: 3%;
     margin-left: 2%;
 }
 
 .delete-button{
     color: #2798D3;
     float: left;
-    margin-top: 2%;
-    margin-left: 2.5%;
+    margin-top: 3.25%;
+    margin-left: 5%;
     font-size: 18px;
 }
 
@@ -183,4 +230,28 @@
     float: right;
     margin-top: 7%;
     margin-right: 9.5%;
+}
+
+.add-product-button1{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    font-size: 14px;
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.addStock-left-con{
+    width: 40%;
+    float: left;
+}
+
+.addStock-left-con1{
+    width: 60%;
+    float: left;
 }

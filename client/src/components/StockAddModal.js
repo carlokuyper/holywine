@@ -14,17 +14,19 @@ const StockModal = (props) => {
     const [renderProducts, setRenderProducts] = useState(false);
 
 
-    let defaultFormVals = ["productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "variation1", "variation2", "variation3", "size1", "size2", "size3"];
+    let defaultFormVals = ["productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
 
     const [formValues, setFormValues] = useState(defaultFormVals);
-    const [imageName, setImageName] = useState("Name of File will appear here");
+    const [imageName, setImageName] = useState("Upload Image");
 
     const [productImage, setProductImage] = useState();
 
     const getValues = (e) =>{
-    const { productName, value } = e.target;
-    setFormValues({ ...formValues, [productName]: value });
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
     }
+
+    
 
     const getImage = (e) => {
 
@@ -50,11 +52,12 @@ const StockModal = (props) => {
         e.preventDefault();
     
         const payloadData = new FormData();
+        
         var age = +formValues['vintage1'] + +formValues['vintage2'] + +formValues['vintage3'];
-        var flavours = +formValues['variation1'] + +formValues['variation2'] + +formValues['variation3'];
+        var flavours = +formValues['flavour1'] + +formValues['flavour2'] + +formValues['flavour3'];
         var sizes = +formValues['size1'] + +formValues['size2'] + +formValues['size3'];
         var stock = age + flavours + sizes;
-    
+        
         let payload = {
             productName: formValues['productName'],
             productBrand: formValues['productBrand'],
@@ -66,30 +69,33 @@ const StockModal = (props) => {
             sizes: sizes,
             stock: stock,
             vintage: {
-                fiveYears: +formValues['vintage1'],
-                tenYears: +formValues['vintage2'],
-                twelveYears: +formValues['vintage3'],
+                vintage1: +formValues['vintage1'],
+                vintage2: +formValues['vintage2'],
+                vintage3: +formValues['vintage3'],
             },
             variations: {
-                flavour1: +formValues['variation1'],
-                flavour2: +formValues['variation2'],
-                flavour3: +formValues['variation3'],
+                flavour1: +formValues['flavour1'],
+                flavour2: +formValues['flavour2'],
+                flavour3: +formValues['flavour3'],
             },
             size: {
-                single: +formValues['size1'],
-                box: +formValues['size2'],
-                barrel: +formValues['size3'],
+                size1: +formValues['size1'],
+                size2: +formValues['size2'],
+                size3: +formValues['size3'],
             }
         }
-    
+        
         payloadData.append("information", JSON.stringify(payload));
         payloadData.append("image", productImage);
     
+        console.log(payload);
+
         Axios.post('http://localhost:5000/api/newProduct', payloadData)
         .then((res)=> {
         if(res){
             console.log("Item Added"); 
             setRenderProducts(true);
+            props.close();
         }
         })
         .catch(function (error) {
@@ -98,39 +104,76 @@ const StockModal = (props) => {
     
         }
 
-    const closeModal = () => {
+        const closeModal = () => {
         props.close();
-      }
+        }
 
     return (
         <div className='stock-modal'>
             <div className='edit-stock-con'>
-                <div className='edit-top-con'>
-                    <img className='edit-stock-wine-img' src='./brett-jordan-fAz5Cf1ajPM-unsplash.jpg' />
-                    <p>{imageName}</p>
+                <form className='edit-top-con' onSubmit={addProduct}>
+                    <div className='addStock-left-con'>
+                        <img className='edit-stock-wine-img' id="imgPrev" />
+                        <p className='stock-left1'>{imageName}</p>
+                        <label className='add-product-button1' variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></label>
+                    </div>
 
-                    <p className='stock-left'>Product Name</p>
-                    <input className="edit-input" type="text" placeholder="Product Name"/>
-                    <p className='stock-left'>Brand</p>
-                    <input className="edit-input" type="text" placeholder="Brand"/>
+                    <div className='addStock-left-con1'>
+                        <div className='small-edit-con1'>
+                            <p className='stock-left1'>Product Name</p>
+                            <input className="edit-input-small1" required name="productName" type="text" placeholder="Product Name" onChange={getValues}/>
+                        </div>   
+                        <div className='small-edit-con1'>                          
+                            <p className='stock-left1'>Brand</p>
+                            <input className="edit-input-small1" required name="productBrand" type="text" placeholder="Brand" onChange={getValues}/>
+                        </div>
+                        
+                        <p className='stock-left1'>Description</p>
+                        <textarea className="edit-input-description" required name="productDescription" type="text" placeholder="Product Description" onChange={getValues}/>
 
-                    <p className='stock-left'>Description</p>
-                    <textarea className="edit-input-description" type="text" cols="50" rows="5" placeholder="Product Description"></textarea>
-                    <div className='small-edit-con'>
-                        <p className='stock-left'>Storage</p>
-                        <input className="edit-input-small" type="text" placeholder="Storage"/>
-                    </div>
-                    <div className='small-edit-con'>
-                        <p className='stock-left'>Vintage</p>
-                        <input className="edit-input-small" type="text" placeholder="Vintage"/>
-                    </div>
-                    <div className='small-edit-con'>
-                        <p className='stock-left'>Size</p>
-                        <input className="edit-input-small" type="text" placeholder="Box"/>
-                    </div>
-                </div>
-                <div className='edit-button'>Add Product</div>
-                <h2 className="delete-button" onClick={closeModal}>Close</h2>
+                        <div className='small-edit-con1'>
+                            <p className='stock-left1'>Storage Location</p>
+                            <input className="edit-input-small1" required name="storageLocation" type="text" placeholder="Storage Location" onChange={getValues}/>
+                        </div>
+                        <div className='small-edit-con1'>
+                            <p className='stock-left1'>Price</p>
+                            <input className="edit-input-small1" required name="price" type="text" placeholder="Price" onChange={getValues}/>
+                        </div>
+                        <div className='small-edit-con'>
+                            <p className='stock-left2'>Vintage</p>
+                            <p className='stock-left-name'>5 Years old</p>
+                            <p className='stock-left-name'>10 Years old</p>
+                            <p className='stock-left-name'>12 Years old</p>
+                            <input className="edit-input-small" required name="vintage1" type="text" placeholder="5 Years old" onChange={getValues}/>
+                            {/* <p className='stock-left-name'>Vintage</p> */}
+                            <input className="edit-input-small" required name="vintage2" type="text" placeholder="10 Years old" onChange={getValues}/>
+                            {/* <p className='stock-left-name'>Vintage</p> */}
+                            <input className="edit-input-small" required name="vintage3" type="text" placeholder="12 Years old" onChange={getValues}/>
+                        </div>
+                        
+                        <div className='small-edit-con'>
+                            <p className='stock-left2'>Variations:</p>
+                            <p className='stock-left-name'>5 Years old</p>
+                            <p className='stock-left-name'>10 Years old</p>
+                            <p className='stock-left-name'>12 Years old</p>
+                            <input className="edit-input-small" required name="flavour1" type="text" placeholder="flavour1" onChange={getValues}/>
+                            <input className="edit-input-small" required name="flavour2" type="text" placeholder="flavour2" onChange={getValues}/>
+                            <input className="edit-input-small" required name="flavour3" type="text" placeholder="flavour3" onChange={getValues}/>
+                        </div>
+
+                        <div className='small-edit-con'>
+                            <p className='stock-left2'>Sizes:</p>
+                            <p className='stock-left-name'>Bottle</p>
+                            <p className='stock-left-name'>Box</p>
+                            <p className='stock-left-name'>Barrel</p>
+                            <input className="edit-input-small" required name="size1" type="text" placeholder="Bottle" onChange={getValues}/>
+                            <input className="edit-input-small" required name="size2" type="text" placeholder="Box" onChange={getValues}/>
+                            <input className="edit-input-small" required name="size3" type="text" placeholder="Barrel" onChange={getValues}/>
+                        </div>
+                        <button className='edit-button' type="submit">Add Product</button>
+                        <h2 className="delete-button" onClick={closeModal}>Close</h2>
+                        </div>
+                </form>
             </div>
         </div>
     );
