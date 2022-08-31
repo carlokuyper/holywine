@@ -135,7 +135,11 @@ router.post('/api/newCart', (req, res) =>{
     const newCart = new cartSchema ({
         name: data.name,
         price: data.price,
-        image: data.image
+        image: data.image,
+        vintage: data.vintage,
+        variations: data. variations,
+        size: req.body.size,
+        qty: req.body.qty,
     });
 
     newCart.save()

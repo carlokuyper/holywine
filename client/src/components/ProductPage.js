@@ -82,12 +82,15 @@ const ProductPage = (props) => {
         })
     }, []);
 
-    // let name = productData.productName;
-    // let price = productData.price;
-    // let image = productData.image;
-    // console.log(name + price + " " + image);
-
     //Add Products To Cart
+    const [selectedVintage, setSelectedVintage] = useState();
+    const [selectedVariations, setSelectedVariations] = useState();
+    const [selectedSize, setSelectedSize] = useState();
+    const [selectedQty, setSelectedQty] = useState();
+    // console.log(name + price + " " + image + " " + selectedVintage + " " + selectedSize);
+
+    let totalPrice = (productData.price * selectedQty) + 60;
+
     const [renderProducts, setRenderProducts] = useState(false);
     let defaultFormVals = ["name", "price", "image"];
 
@@ -104,14 +107,18 @@ const ProductPage = (props) => {
         let payloadData = new FormData();
     
         let payload = {
-            name: formValues['name'],
-            price: +formValues['price'],
-            image: formValues['image'] 
+            name:  productData.productName,
+            price: productData.price,
+            image: productData.image, 
+            vintage: selectedVintage,
+            variations: selectedVariations,
+            size: selectedSize,
+            qty: selectedQty,
         }
     
         payloadData.append("information", JSON.stringify(payload));
     
-        console.log(payloadData);
+        console.log(payload);
         Axios.post('http://localhost:5000/api/newCart', payload)
         .then((res)=> {
             if(res){
@@ -139,7 +146,7 @@ const ProductPage = (props) => {
 
                 <div className='rating-con'>
                     <img className='star-icon' src='./images/star.png'/>
-                    <p className='rating-text'>4.8</p>
+                    <p className='rating-text'>{productData.stock}</p>
                 </div>
 
                 <h3 className='product-description'>Description</h3>
@@ -147,30 +154,40 @@ const ProductPage = (props) => {
                 {/* The wine cellars of Cricova is the second largest wine cellar in Moldova, after Milestii Mici (largest in the world). It boasts 120 kilometres (75 mi) of labyrinthine roadways, versus MM's 200 kilometres (120 mi), tunnels have existed under Cricova since the 15th century, when limestone was dug out to help build Chişinău. They were converted into an underground wine emporium in the 1950s... */}
             </div>
             <form className='prodcut-cart' onSubmit={addCart}>
-                <h2 className='product-price'>R  {productData.price}</h2>
-                <p className='product-delivery'>R60 for delivery</p>
-
+                <h2 className='product-price'>R {productData.price}</h2>
                 <p className='product-variations'>Wine Age</p>
-                <select className='product-select' name="vintage" id="vintage">
+                <select className='product-select'  name="vintage" id="vintage"  onChange={(e) => setSelectedVintage(e.target.value)} required>
+                    <option value="" selected disabled hidden>Select an Option</option>
                     <option value="2002">2002</option>
                     <option value="2006">2006</option>
                     <option value="2008">2008</option>
                     <option value="2012">2012</option>
                 </select>
 
-                <input className="edit-input-small1" required name="name" type="text" placeholder="name" onChange={getValues}/>
-                <input className="edit-input-small1" required name="price" type="text" placeholder="price" onChange={getValues}/>
-                <input className="edit-input-small1" required name="image" type="text" placeholder="image" onChange={getValues}/>
+                <p className='product-variations'>Variations</p>
+
+                <select className='product-select' name="variations" id="variations" onChange={(e) => setSelectedVariations(e.target.value)} required>
+                    <option value="" selected disabled hidden>Select an Option</option>
+                    <option value="blackberry">blackberry</option>
+                    <option value="cherry">cherry</option>
+                    <option value="plum">plum</option>
+                </select>
 
                 <p className='product-variations'>Size</p>
 
-                <select className='product-select' name="size" id="size">
+                <select className='product-select' name="size" id="size" onChange={(e) => setSelectedSize(e.target.value)} required>
+                    <option value="" selected disabled hidden>Select an Option</option>
                     <option value="bottle">Single Bottle</option>
                     <option value="box">Box</option>
                     <option value="barrel">Wine Barrel</option>
                 </select>
 
+                <p className='product-variations'>Quantity</p>
+                <input className="edit-product-qty" min="1" max="10" required name="qty" type="number" placeholder="Qty" onChange={(e) => setSelectedQty(e.target.value)}/>
+
                 <button  type="submit" className='cart-button'>Add to Cart</button>
+                <p className='product-delivery'>R60 for delivery</p>
+                <h3 className='product-variations'>Total R {totalPrice}</h3>
             </form>
 
             <div className="divider">
