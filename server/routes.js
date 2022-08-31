@@ -127,9 +127,10 @@ router.delete ('/api/deleteProducts/:id', async (req, res) => {
 
 //This is where all CART items will be managed
 router.post('/api/newCart', (req, res) =>{
+    console.log(req.body);
     
-    let data = JSON.parse(req.body.information);
-    console.log(req.file.filename);
+    // let data = JSON.parse(req.body.information);
+    data = req.body
 
     const newCart = new cartSchema ({
         name: data.name,

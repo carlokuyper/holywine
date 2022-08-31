@@ -101,17 +101,18 @@ const ProductPage = (props) => {
     const addCart = (e) => {
         e.preventDefault();
     
-        const payloadData = new FormData();
+        let payloadData = new FormData();
     
         let payload = {
-            name: formValues['varOne'],
-            price: +formValues['varOne'],
-            image: formValues['varOne'] 
+            name: formValues['name'],
+            price: +formValues['price'],
+            image: formValues['image'] 
         }
     
         payloadData.append("information", JSON.stringify(payload));
-        
-        Axios.post('http://localhost:5000/api/newCart', payloadData)
+    
+        console.log(payloadData);
+        Axios.post('http://localhost:5000/api/newCart', payload)
         .then((res)=> {
             if(res){
             console.log("Item Added"); 
