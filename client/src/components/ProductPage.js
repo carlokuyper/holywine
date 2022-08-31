@@ -7,7 +7,7 @@ import Cards from "./Cards";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-const ProductPage = () => {
+const ProductPage = (props) => {
 
     
     let navigate = useNavigate();
@@ -57,6 +57,7 @@ const ProductPage = () => {
                 productDescription: data.productDescription,
                 price: data.price,
                 storageLocation: data.storageLocation,
+                image: data.image,
 
                 age: data.age,
                 flavours: data.flavours,
@@ -81,6 +82,50 @@ const ProductPage = () => {
         })
     }, []);
 
+    // let name = productData.productName;
+    // let price = productData.price;
+    // let image = productData.image;
+    // console.log(name + price + " " + image);
+
+    //Add Products To Cart
+    const [renderProducts, setRenderProducts] = useState(false);
+    let defaultFormVals = ["name", "price", "image"];
+
+    const [formValues, setFormValues] = useState(defaultFormVals);
+
+    const getValues = (e) =>{
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    }
+   
+    const addCart = (e) => {
+        e.preventDefault();
+    
+        const payloadData = new FormData();
+    
+        let payload = {
+            name: formValues['varOne'],
+            price: +formValues['varOne'],
+            image: formValues['varOne'] 
+        }
+    
+        payloadData.append("information", JSON.stringify(payload));
+        
+        Axios.post('http://localhost:5000/api/newCart', payloadData)
+        .then((res)=> {
+            if(res){
+            console.log("Item Added"); 
+            setRenderProducts(true);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+    }
+    
+    // {props.price}
+
     return (
         <>
             <Navbar/>
@@ -100,7 +145,7 @@ const ProductPage = () => {
                 <p className='product-des'>{productData.productDescription}</p>
                 {/* The wine cellars of Cricova is the second largest wine cellar in Moldova, after Milestii Mici (largest in the world). It boasts 120 kilometres (75 mi) of labyrinthine roadways, versus MM's 200 kilometres (120 mi), tunnels have existed under Cricova since the 15th century, when limestone was dug out to help build Chişinău. They were converted into an underground wine emporium in the 1950s... */}
             </div>
-            <div className='prodcut-cart'>
+            <form className='prodcut-cart' onSubmit={addCart}>
                 <h2 className='product-price'>R  {productData.price}</h2>
                 <p className='product-delivery'>R60 for delivery</p>
 
@@ -112,16 +157,20 @@ const ProductPage = () => {
                     <option value="2012">2012</option>
                 </select>
 
+                <input className="edit-input-small1" required name="name" type="text" placeholder="name" onChange={getValues}/>
+                <input className="edit-input-small1" required name="price" type="text" placeholder="price" onChange={getValues}/>
+                <input className="edit-input-small1" required name="image" type="text" placeholder="image" onChange={getValues}/>
+
                 <p className='product-variations'>Size</p>
 
                 <select className='product-select' name="size" id="size">
                     <option value="bottle">Single Bottle</option>
-                    <option value="box">box</option>
-                    <option value="barrel">Wine Barrel (24 Bottles)</option>
+                    <option value="box">Box</option>
+                    <option value="barrel">Wine Barrel</option>
                 </select>
 
-                <div className='cart-button'>Add to Cart</div>
-            </div>
+                <button  type="submit" className='cart-button'>Add to Cart</button>
+            </form>
 
             <div className="divider">
                 <p className="divider-text">
