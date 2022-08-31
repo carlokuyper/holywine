@@ -4,19 +4,16 @@ import '../css/stock.css';
 import StockModal from './StockModal';
 import { useEffect } from 'react';
 import Axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 const StockCards = (props) => {
 
-  // Handle Modal
+  // Edit Item
   const [modal, setModal] = useState();
-
-  let navigate = useNavigate();
 
   const editPost = () =>{
   setModal(<StockModal 
     close={setModal} 
-    productId={props.productId} 
+    productId={props.productId} date={props.date}
     productName={props.productName} productBrand={props.productBrand} productDescription={props.productDescription} price={props.price} storageLocation={props.storageLocation} 
           
     age={props.age} flavours={props.flavours} sizes={props.sizes} stock={props.stock} image={props.image}
@@ -28,6 +25,11 @@ const StockCards = (props) => {
   />);
   }
 
+  //Item Date
+  let itemDate = props.date;
+  // .substring(0, 10)
+
+  //Delete Item
   const deleteItem = () => {
   if (window.confirm("Are you sure you want to delete: " + props.productName) === true) {
       Axios.delete('http://localhost:5000/api/deleteProducts/' + props.productId)
@@ -42,11 +44,8 @@ const StockCards = (props) => {
       });
     } 
   }
-    
-  const closeModal = () => {
-    props.close();
-  }
-
+  
+  //Get items Image
   const [imgURL, setImgUrl] = useState ();
 
   let id = props.productId;
@@ -69,14 +68,13 @@ const StockCards = (props) => {
     <>
       {modal}
       <div className="stock-con">
-          {/* <img className='stock-wine-img' src='./brett-jordan-fAz5Cf1ajPM-unsplash.jpg' /> */}
           <img className='stock-wine-img' src={imgURL} />
           
           <p className='stock-left'>{props.productName}</p>
           <p className='stock-left'>{props.productBrand}</p>
           <div className='stock-nr-con' >
-              <p className='stock-left-1'>Rating: </p>
-              <p className='stock-left-1'>2.5</p>
+              <p className='stock-left-1'>Date: </p>
+              <p className='stock-left-1'>{itemDate}</p>
           </div>
 
           <div className='stock-nr-con' >

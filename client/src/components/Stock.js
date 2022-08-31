@@ -45,10 +45,10 @@ const Stock = (props) => {
         Axios.get('http://localhost:5000/api/allProducts')
         .then(res =>{
             let data = res.data;
-            const productItem = data.map((item)=> <StockCards key={item._id} productId={item._id} 
+            const productItem = data.map((item)=> <StockCards key={item._id} productId={item._id} date={item.date}
             
             productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription} price={item.price} storageLocation={item.storageLocation} 
-            age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={props.image}
+            age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={item.image}
 
             vintage1={item.vintage.vintage1} vintage2={item.vintage.vintage2} vintage3={item.vintage.vintage3}
             flavour1={item.variations.flavour1} flavour2={item.variations.flavour2} flavour3={item.variations.flavour3}
@@ -59,9 +59,6 @@ const Stock = (props) => {
             setRenderProducts(false);
         });
     }, [renderProducts]);
-    
-    let images=props.image;
-    console.log(images)
 
     let defaultFormVals = ["productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
 
@@ -152,7 +149,7 @@ const Stock = (props) => {
         <>
             <Navbar/>
             {modal}
-            <h1 className="page-title">Products</h1>
+            <h1 className="page-title">Stock</h1>
             <button variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></button>
             <div className='add-product-button' onClick={addProductModal}>Add new Product</div>
             

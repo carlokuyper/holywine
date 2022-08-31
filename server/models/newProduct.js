@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
+let newDate = new Date();
 const newProduct = mongoose.Schema({
+    date:{ type: Number},
     productName: { type: String,required: true},
     productBrand: { type: String,required: true},
     productDescription: { type: String,required: true},

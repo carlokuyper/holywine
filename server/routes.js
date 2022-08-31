@@ -37,6 +37,7 @@ router.post('/api/newProduct', uploadProductImage.single('image'), (req, res) =>
         flavours: data.flavours,
         sizes: data.sizes,
         stock: data.stock, 
+        date: data.date,
         vintage: {
             vintage1: data.vintage.vintage1,
             vintage2: data.vintage.vintage2,
@@ -85,6 +86,7 @@ router.patch ('/api/updateProducts/:id', async (req, res) => {
     const findProduct = await productSchema.updateOne(
         {_id:req.params.id},
         {$set: {
+                
                 productName: req.body.productName,
                 productBrand: req.body.productBrand,
                 productDescription: req.body.productDescription,
@@ -94,6 +96,7 @@ router.patch ('/api/updateProducts/:id', async (req, res) => {
                 flavours: flavours,
                 sizes: sizes,
                 stock: stock,
+                image: req.body.image,
                 vintage: {
                     vintage1: req.body.vintage1,
                     vintage2: req.body.vintage2,

@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import '../css/productpage.css';
 import Cards from "./Cards";
@@ -6,14 +9,87 @@ import Footer from "./Footer";
 
 const ProductPage = () => {
 
+    
+    let navigate = useNavigate();
+
+    let productId = sessionStorage.getItem("productId");
+    // console.log(productId);
+
+    const [imgURL, setImgUrl] = useState ();
+
+    const [productData, setProductData] = useState({
+        productName: "",
+        productBrand: "",
+        productDescription: "",
+        price: "",
+        storageLocation: "",
+
+        age: "",
+        flavours: "",
+        sizes: "",
+        stock: "",
+
+        vintage1: "",
+        vintage2: "",
+        vintage3: "",
+
+        flavour1: "",
+        flavour2: "",
+        flavour3: "",
+
+        size1: "",
+        size2: "",
+        size3: ""
+    });
+
+    const dashboard = () =>{
+        sessionStorage.clear();
+        navigate("/");
+    }
+
+    useEffect(()=>{
+        Axios.get('http://localhost:5000/api/oneProducts/' + productId)
+        .then(res => {
+            let data = res.data;
+            setProductData({
+                productName: data.productName,
+                productBrand: data.productBrand,
+                productDescription: data.productDescription,
+                price: data.price,
+                storageLocation: data.storageLocation,
+
+                age: data.age,
+                flavours: data.flavours,
+                sizes: data.sizes,
+                stock: data.stock,
+
+                vintage1: data.variations.vintage1,
+                vintage2: data.variations.vintage2,
+                vintage3: data.variations.vintage3,
+
+                flavour1: data.variations.flavour1,
+                flavour2: data.variations.flavour2,
+                flavour3: data.variations.flavour3,
+
+                size1: data.variations.size1,
+                size2: data.variations.size2,
+                size3: data.variations.size3
+            })
+            let URL = 'http://localhost:5000/productImages/' + data.image;
+            setImgUrl(URL);
+
+        })
+    }, []);
+
     return (
         <>
             <Navbar/>
             <div className='product-holder'>
-                <img className='product-wine-img' src='./brett-jordan-fAz5Cf1ajPM-unsplash.jpg'/>
+                <div onClick={dashboard}>back</div>
+                <img className='product-wine-img' src={imgURL}/>
 
-                <h2 className='product-title'>Cabernet Sauvignon Shiraz</h2>
-                <h3 className='product-link-text'>Simonsig</h3>
+                <h2 className='product-title'>{productData.productName}</h2>
+                <h3 className='product-link-text'>{productData.productBrand}</h3>
 
                 <div className='rating-con'>
                     <img className='star-icon' src='./images/star.png'/>
@@ -21,15 +97,14 @@ const ProductPage = () => {
                 </div>
 
                 <h3 className='product-description'>Description</h3>
-                <p className='product-des'>The wine cellars of Cricova is the second largest wine cellar in Moldova, after Milestii Mici (largest in the world). It boasts 120 kilometres (75 mi) of labyrinthine roadways, versus MM's 200 kilometres (120 mi), tunnels have existed under Cricova since the 15th century, when limestone was dug out to help build Chişinău. They were converted into an underground wine emporium in the 1950s...</p>
-
+                <p className='product-des'>{productData.productDescription}</p>
+                {/* The wine cellars of Cricova is the second largest wine cellar in Moldova, after Milestii Mici (largest in the world). It boasts 120 kilometres (75 mi) of labyrinthine roadways, versus MM's 200 kilometres (120 mi), tunnels have existed under Cricova since the 15th century, when limestone was dug out to help build Chişinău. They were converted into an underground wine emporium in the 1950s... */}
             </div>
             <div className='prodcut-cart'>
-                <h2 className='product-price'>R 259.21</h2>
+                <h2 className='product-price'>R  {productData.price}</h2>
                 <p className='product-delivery'>R60 for delivery</p>
 
-                <p className='product-variations'>Vintage</p>
-
+                <p className='product-variations'>Wine Age</p>
                 <select className='product-select' name="vintage" id="vintage">
                     <option value="2002">2002</option>
                     <option value="2006">2006</option>
@@ -40,8 +115,8 @@ const ProductPage = () => {
                 <p className='product-variations'>Size</p>
 
                 <select className='product-select' name="size" id="size">
-                    <option value="single">Single Bottle</option>
-                    <option value="box">Box (6 Bottles)</option>
+                    <option value="bottle">Single Bottle</option>
+                    <option value="box">box</option>
                     <option value="barrel">Wine Barrel (24 Bottles)</option>
                 </select>
 
@@ -53,12 +128,7 @@ const ProductPage = () => {
                     New arivals</p>
             </div>
             <div className="card-con-horizontal ">
-                <Cards/>
-                <Cards/>
-                <Cards/>
-                <Cards/>
-                <Cards/>
-                <Cards/>
+                
             </div>
 
             <Footer/>

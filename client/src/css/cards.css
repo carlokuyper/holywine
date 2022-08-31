@@ -30,6 +30,8 @@
     margin-left: 1.5%;
     float: left;
     border-radius: 5px;
+    max-width: 30%;
+    object-fit: cover;
 }
 
 .left-text {

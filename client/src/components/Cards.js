@@ -1,20 +1,43 @@
+import React, { useState } from 'react'
 import '../index.css';
 import '../css/cards.css';
+import { useEffect } from 'react';
+import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
+const Cards = (props) => {
 
-const Cards = () => {
+  //Adds images to the product cards
+ const [imgURL, setImgUrl] = useState ();
 
+  let id = props.productId;
+  // console.log(id);
 
-    return(
-        <div className="item-con">
-            <a href='/ProductPage'><img className='wine-img' src='./brett-jordan-fAz5Cf1ajPM-unsplash.jpg'/></a>
-            <a href='/ProductPage'><p className='left-text'>Sauvignon Blanc</p></a>
-            <p className='left-link-text'>Simonsig</p> 
-            <p className='left-text'>R259.24</p>     
-            <a href='/ProductPage'><div className='view-product-button'>View Product</div></a>
+  useEffect(()=>{
+    Axios.get('http://localhost:5000/api/oneProducts/' + id)
+    .then(res => {
+        let data = res.data;
+        let URL = 'http://localhost:5000/productImages/' + data.image;
+        setImgUrl(URL);
+      })
+  }, []);
 
-        </div>
-    );
+  let navigate = useNavigate();
+
+  const toProduct = () => { 
+    sessionStorage.setItem('productId', props.productId);
+    navigate('/productpage');
+  }
+
+  return(
+      <div className="item-con">
+          <a href='/ProductPage'><img className='wine-img'  src={imgURL}/></a>
+          <a href='/ProductPage'><p className='left-text'>{props.productName}</p></a>
+          <p className='left-link-text'>{props.productName}</p> 
+          <p className='left-text'>R {props.price}</p>     
+          <div onClick={toProduct} className='view-product-button'>View Product</div>
+      </div>
+  );
 }
 
 export default Cards;

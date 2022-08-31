@@ -10,11 +10,14 @@
 }
 
 .product-wine-img{
-    height: 96%;
-    margin-top: .75%;
+    height: 90%;
+    margin-top: 2%;
     margin-left: .75%;
     float: left;
     border-radius: 5px;
+    border-radius: 5px;
+    max-width: 30%;
+    object-fit: cover;
 }
 
 .product-title{

@@ -1,13 +1,18 @@
 import '../index.css';
 import '../css/navbar.css';
 import CartModal from "./CartModal";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-
+    let navigate = useNavigate();
+    const dashboard = () =>{
+        sessionStorage.clear();
+        navigate("/");
+    }
 
     return(
         <div className="nav">
-            <a href='/'><img className="logo" src="./images/logo.png"/></a>
+           <img onClick={dashboard} className="logo" src="./images/logo.png"/>
             
 
             <div className="dropdown">
@@ -19,7 +24,7 @@ const Navbar = () => {
                     <a href="#">Profile</a>
 
                     <a href="/Orders">Orders</a>
-                    <a href="/Stock">Products</a>
+                    <a href="/Stock">Stock</a>
                     
                 </div>
             </div>

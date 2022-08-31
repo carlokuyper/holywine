@@ -14,7 +14,7 @@ const StockModal = (props) => {
     const [renderProducts, setRenderProducts] = useState(false);
 
 
-    let defaultFormVals = ["productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
+    let defaultFormVals = ["date", "productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
 
     const [formValues, setFormValues] = useState(defaultFormVals);
     const [imageName, setImageName] = useState("Upload Image");
@@ -47,7 +47,7 @@ const StockModal = (props) => {
     reader.readAsDataURL(e.target.files[0]);
 
     }
-    
+
     const addProduct = (e) => {
         e.preventDefault();
     
@@ -57,8 +57,10 @@ const StockModal = (props) => {
         var flavours = +formValues['flavour1'] + +formValues['flavour2'] + +formValues['flavour3'];
         var sizes = +formValues['size1'] + +formValues['size2'] + +formValues['size3'];
         var stock = age + flavours + sizes;
+        var mydate1 = Date.now()
         
         let payload = {
+            date: mydate1,
             productName: formValues['productName'],
             productBrand: formValues['productBrand'],
             productDescription: formValues['productDescription'],
@@ -98,10 +100,9 @@ const StockModal = (props) => {
             props.close();
         }
         })
-        .catch(function (error) {
-        console.log(error);
-        });
-    
+            .catch(function (error) {
+            console.log(error);
+            })
         }
 
         const closeModal = () => {

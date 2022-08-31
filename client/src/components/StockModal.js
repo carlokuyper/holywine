@@ -9,7 +9,8 @@ import '../css/stock.css';
 const StockModal = (props) => {
     // console.log(props);
 
-    let editFormValues = {productId: props.productId, productName: props.productName, productBrand: props.productBrand, productDescription: props.productDescription, price: props.price, storageLocation: props.storageLocation, 
+    let editFormValues = {productId: props.productId, date: props.date,
+        productName: props.productName, productBrand: props.productBrand, productDescription: props.productDescription, price: props.price, storageLocation: props.storageLocation, 
         vintage1: props.vintage1, vintage2: props.vintage2, vintage3: props.vintage3,
         flavour1: props.flavour1, flavour2: props.flavour2, flavour3: props.flavour3,
         size1: props.size1, size2: props.size2, size3: props.size3, image: props.image};
@@ -47,7 +48,9 @@ const StockModal = (props) => {
     const [imageName, setImageName] = useState("Upload Image");
     const [productImage, setProductImage] = useState();
     const [imgURL, setImgUrl] = useState ();
-    const [image, setImage] = useState ();
+    const [imagetest, setImage] = useState ();
+
+    console.log(imgURL)
 
     let id = props.productId;
 
@@ -68,7 +71,7 @@ const StockModal = (props) => {
       })
   }, []);
   //cHECKS IMG 
-//   console.log(image)
+//   console.log(imagetest)
 
   const getImage = (e) => {
 
@@ -80,6 +83,8 @@ const StockModal = (props) => {
     let imgName = value.substring(12);
     setImageName(imgName);
 
+    
+
     let reader = new FileReader();
     reader.onload = () => {
         let output = document.getElementById('imgPrev');
@@ -90,7 +95,8 @@ const StockModal = (props) => {
 
     }
 
-    
+   
+
     const closeModal = () => {
         props.close();
       }
@@ -104,8 +110,9 @@ const StockModal = (props) => {
                         <img className='stock-wine-img' src={imgURL} />
                         <p className='stock-left1'>{imageName}</p>
                         <label className='add-product-button1' variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></label>
+                       
                     </div>
-
+                    <input name="image" defaultValue={props.image} onChange={updateValues}/>
                     
                     <div className='addStock-left-con1'>
                         <div className='small-edit-con1'>
