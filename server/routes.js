@@ -2,8 +2,10 @@ const express = require('express');
 const router = express();
 const multer = require('multer');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const productSchema = require('./models/newProduct');
-const userSchema = require('./models/users');
+const newUserModel = require('./models/addUsers');
 const orderSchema = require('./models/orders');
 const cartSchema = require('./models/newCart');
 
@@ -133,7 +135,9 @@ router.post('/api/newCart', (req, res) =>{
     data = req.body
 
     const newCart = new cartSchema ({
-        name: data.name,
+        productName: data.productName,
+        productBrand: data.productBrand,
+        productDescription: data.productDescription,
         price: data.price,
         image: data.image,
         vintage: data.vintage,
@@ -150,6 +154,32 @@ router.post('/api/newCart', (req, res) =>{
         res.status(400).json({msg: "There was an error ", err: err});
     })
 });
+
+
+router.patch ('/api/updateCart/:id', async (req, res) => {
+    console.log(req.body);
+    const findCart = await cartSchema.updateOne(
+        {_id:req.params.id},
+        {$set: {
+                productName: req.body.productName,
+                productBrand: req.body.productBrand,
+                productDescription: req.body.productDescription,
+                price: +req.body.price,
+                vintage: req.body.vintage,
+                variations: req.body.variations,
+                size: req.body.size,
+                qty: +req.body.qty,
+                image: req.body.image,
+            }
+        }
+    );
+    res.json(findCart);
+})
+
+router.get('/api/allCart', async (req, res) => {
+    const findCart = await cartSchema.find();
+    res.json(findCart);
+})
 
 router.delete ('/api/deleteCart/:id', async (req, res) => {
     const findCart = await cartSchema.remove({_id:req.params.id});
@@ -196,5 +226,60 @@ router.delete ('/api/deleteOrder/:id', async (req, res) => {
     const delOrders = await orderSchema.remove({_id:req.params.id});
     res.json(delOrders);
 })
+
+
+// Adds users
+router.post('/api/adduser', (req, res) =>{
+
+    const newUser = new newUserModel({
+        username: req.body.username, 
+        password: req.body.password 
+    }); 
+
+    newUser.save()
+    .then(item => {
+        res.json(item)
+    })
+    .catch(err => {
+       res.status(400).json({msg:"There is an error", err}); 
+    });
+});
+
+router.post('/api/loginuser', async (req, res) => {
+
+    const findUser = await newUserModel.findOne({
+        username: req.body.username
+    });
+
+    if(findUser){
+        if(await bcrypt.compare(req.body.password, findUser.password)){
+            const userToken = jwt.sign({
+                username: req.body.username
+            }, 'dsaweadw45dasdad4') //secret key
+            return res.json({status: "ok", user:userToken})
+        } else {
+            res.json({user: false})
+        }
+    } else {
+        res.json({msg: "User not found"})
+    }
+});
+
+router.post('api/verifyToken', async(req, res) => {
+    const token = req.body.token;
+    const decode = jwt.verify(token,'dsaweadw45dasdad4');
+
+    // console.log(decode);
+    const findUser = await newUserModel.findOne({
+        username: decode.username
+    });
+
+    if(findUser){
+        res.json({status: "ok", verified: true})
+    } else {
+        res.json({status: "error", verified: false})
+    }
+});
+
 
 module.exports = router;

@@ -1,3 +1,11 @@
+.checkout-holder-con{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: -1%;
+    float: left;
+
+}
+
 .checkout-item-con {
     width: 70%;
     height: 200px;
@@ -14,19 +22,26 @@
     width: 29%;
     height: auto;
     padding-bottom: 1%;
-    float: right;
+    
     margin-top: .5%;
     margin-bottom: .5%;
     background-color: #222126;
     border-radius: 5px;
     display: inline-block;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
-    
+    float: right;
 }
 
 .checkout-stats {
     height: 100%;
-    width: 60%;
+    width: 30%;
+    margin: 0;
+    float: left;
+}
+
+.checkout-stats-1 {
+    height: 100%;
+    width: 20%;
     margin: 0;
     float: left;
 }
@@ -35,16 +50,38 @@
     height: 92%;
     margin-top: 1.5%;
     margin-left: 1.5%;
+    margin-right: 1%;
     float: left;
     border-radius: 5px;
+    max-width: 20%;
+    object-fit: cover;
 }
 
 .checkout-text {
     float: left;
     margin: 0;
-    margin-top: 3%;
+    margin-top: 8.5%;
     margin-left: 2%;
-    width: 45%;
+    margin-bottom: 2%;
+    width: 90%;
+}
+
+.checkout-text-1 {
+    float: left;
+    margin: 0;
+    margin-top: 8.5%;
+    margin-left: 2%;
+    width: 100%;
+}
+
+.checkout-text-2{
+    float: left;
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 2%;
+    width: 90%;
+    height: 48%;
+    overflow: hidden;
 }
 
 .checkout-link-text {
@@ -77,7 +114,6 @@
     margin-top: 5%;
     margin-left: 5%;
     margin-right: 3%;
-    
 }
 
 .checkout-total-nr {
@@ -104,27 +140,37 @@
 .checkout-text-right {
     float: right;
     margin: 0;
-    margin-top: 5%;
+    margin-top: 8.5%;
+    width: 100%;
+    text-align: right;
+}
+
+.checkout-text-right-1{
+    float: right;
+    margin: 0;
+    margin-top: 15%;
+    width: 30%;
+    text-align: right;
 }
 
 .checkout-delete-con {
     float: right;
     width: 100%;
-    margin-top: 22.5%;
+    margin-top: 14%;
     margin-right: 3%;
 }
 
 .checkout-edit-img {
-    width: 7%;
+    width: 13%;
     float: right;
     margin-right: 2%;
-    margin-top: 4%;
+    margin-top: 13%;
 }
 
 .checkout-options-con {
     float: right;
-    height: 50%;
-    width: 35%;
+    height: 100%;
+    width: 25%;
     margin: 0;
 
     margin-right: 2%;

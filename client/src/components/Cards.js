@@ -31,9 +31,9 @@ const Cards = (props) => {
 
   return(
       <div className="item-con">
-          <a href='/ProductPage'><img className='wine-img'  src={imgURL}/></a>
-          <a href='/ProductPage'><p className='left-text'>{props.productName}</p></a>
-          <p className='left-link-text'>{props.productName}</p> 
+          <img onClick={toProduct} className='wine-img'  src={imgURL}/>
+          <p  onClick={toProduct}className='left-text'>{props.productName}</p>
+          <p className='left-link-text'>{props.productBrand}</p> 
           <p className='left-text'>R {props.price}</p>     
           <div onClick={toProduct} className='view-product-button'>View Product</div>
       </div>

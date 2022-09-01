@@ -86,7 +86,7 @@ const ProductPage = (props) => {
     const [selectedVintage, setSelectedVintage] = useState();
     const [selectedVariations, setSelectedVariations] = useState();
     const [selectedSize, setSelectedSize] = useState();
-    const [selectedQty, setSelectedQty] = useState();
+    const [selectedQty, setSelectedQty] = useState(1);
     // console.log(name + price + " " + image + " " + selectedVintage + " " + selectedSize);
 
     let totalPrice = (productData.price * selectedQty) + 60;
@@ -107,7 +107,9 @@ const ProductPage = (props) => {
         let payloadData = new FormData();
     
         let payload = {
-            name:  productData.productName,
+            productName:  productData.productName,
+            productBrand:  productData.productBrand,
+            productDescription:  productData.productDescription,
             price: productData.price,
             image: productData.image, 
             vintage: selectedVintage,
@@ -183,7 +185,7 @@ const ProductPage = (props) => {
                 </select>
 
                 <p className='product-variations'>Quantity</p>
-                <input className="edit-product-qty" min="1" max="10" required name="qty" type="number" placeholder="Qty" onChange={(e) => setSelectedQty(e.target.value)}/>
+                <input className="edit-product-qty" min="1" max="10" required name="qty" defaultValue={1} type="number" placeholder="Qty" onChange={(e) => setSelectedQty(e.target.value)}/>
 
                 <button  type="submit" className='cart-button'>Add to Cart</button>
                 <p className='product-delivery'>R60 for delivery</p>

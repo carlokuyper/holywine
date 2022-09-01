@@ -70,6 +70,7 @@ const StockModal = (props) => {
 
       })
   }, []);
+
   //cHECKS IMG 
 //   console.log(imagetest)
 
@@ -95,7 +96,8 @@ const StockModal = (props) => {
 
     }
 
-   
+    //updated get image to this!
+     let images = "http://localhost:5000/productImages/" + props.image;
 
     const closeModal = () => {
         props.close();
@@ -107,7 +109,7 @@ const StockModal = (props) => {
                 <form className='edit-top-con' onSubmit={updateProd}>
                     <div className='addStock-left-con'>
                         <img className='edit-stock-wine-img' id="imgPrev" />
-                        <img className='stock-wine-img' src={imgURL} />
+                        <img className='stock-wine-img' src={images} />
                         <p className='stock-left1'>{imageName}</p>
                         <label className='add-product-button1' variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></label>
                        

@@ -8,6 +8,9 @@
     height: 100%;
     float: left;
     border-radius: 5px;
+    border-radius: 5px;
+    max-width: 15%;
+    object-fit: cover;
 }
 
 .cart-tex-con{

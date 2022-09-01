@@ -46,29 +46,13 @@ const StockCards = (props) => {
   }
   
   //Get items Image
-  const [imgURL, setImgUrl] = useState ();
-
-  let id = props.productId;
-
-  useEffect(()=>{
-    Axios.get('http://localhost:5000/api/oneProducts/' + id)
-    .then(res => {
-        let data = res.data;
-                  
-        let URL = 'http://localhost:5000/productImages/' + data.image;
-
-        // console.log(id)
-
-        setImgUrl(URL);
-    
-      })
-  }, []);
+  let images = "http://localhost:5000/productImages/" + props.image;
 
   return (
     <>
       {modal}
       <div className="stock-con">
-          <img className='stock-wine-img' src={imgURL} />
+          <img className='stock-wine-img' src={images} />
           
           <p className='stock-left'>{props.productName}</p>
           <p className='stock-left'>{props.productBrand}</p>
