@@ -9,7 +9,7 @@ const Register = () => {
   
   let navigate = useNavigate();
 
-  let formVals = ["username", "password"];
+  let formVals = ["username", "name", "surname", "address", "contact", "password"];
 
   const [formValues, setFormValues] = useState(formVals);
 
@@ -23,6 +23,10 @@ const Register = () => {
 
       let payload = {
           username: formValues['username'],
+          name: formValues['name'],
+          surname: formValues['surname'],
+          address: formValues['address'],
+          contact: formValues['contact'],
           password: formValues['password']
       }
 
@@ -50,10 +54,21 @@ const Register = () => {
         <img className="sign-logo" src="./images/logo.png"/>
         <form className='signin-con' onSubmit={addNewUser}>
             <h2 className='sing-title'>Sign up</h2>
-            <p className='sign-text' >Username</p>
-            <input className="singbar" type="text" placeholder="username" label="username" name="username"  onChange={getValues}/>
-            <p className='sign-text'>Password</p>
-            <input className="passbar" type="password" placeholder="Password" label="Password" name="password" onChange={getValues}/>
+            
+            <p className='sign-text-left'>Name</p>
+            <p className='sign-text-right'>surname</p>
+            <input className="left-input" required type="text" placeholder="Name" label="name" name="name"  onChange={getValues}/>
+            <input className="right-input" required type="text" placeholder="Surname" label="surname" name="surname" onChange={getValues}/>
+            
+            <p className='sign-text-left' >Username</p>
+            <p className='sign-text-right'>Password</p>
+            <input className="left-input" required type="text" placeholder="Username" label="username" name="username"  onChange={getValues}/>
+            <input className="right-input" required type="password" placeholder="Password" label="Password" name="password" onChange={getValues}/>
+            
+            <p className='sign-text-left'>Contact</p>
+            <p className='sign-text-right'>Address</p>
+            <input className="left-input" required type="text" placeholder="Contact" label="contact" name="contact"  onChange={getValues}/>
+            <input className="right-input" required type="text" placeholder="Address" label="address" name="address" onChange={getValues}/>
             
             <button className='sign-button' type="submit" >Sign up</button>
             <div className='sign-up-button' onClick={signIn}>Sign in?</div>

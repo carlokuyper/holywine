@@ -72,7 +72,7 @@ const StockModal = (props) => {
   }, []);
 
   //cHECKS IMG 
-//   console.log(imagetest)
+  //   console.log(imagetest)
 
   const getImage = (e) => {
 
@@ -108,14 +108,12 @@ const StockModal = (props) => {
             <div className='edit-stock-con'>
                 <form className='edit-top-con' onSubmit={updateProd}>
                     <div className='addStock-left-con'>
-                        <img className='edit-stock-wine-img' id="imgPrev" />
-                        <img className='stock-wine-img' src={images} />
-                        <p className='stock-left1'>{imageName}</p>
-                        <label className='add-product-button1' variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></label>
-                       
+                        {/* <img className='edit-stock-wine-img' id="imgPrev" /> */}
+                        <img className='edit-stock-wine-img' src={images} />
+                        {/* <p className='stock-left1'>{imageName}</p> */}
+                        {/* <label className='add-product-button1' variant="contained" component="label" >Upload File <input type="file" hidden onChange={getImage}/></label> */}
                     </div>
-                    <input name="image" defaultValue={props.image} onChange={updateValues}/>
-                    
+                    {/* <input name="image" defaultValue={props.image} onChange={updateValues}/> */}
                     <div className='addStock-left-con1'>
                         <div className='small-edit-con1'>
                             <p className='stock-left1'>Product Name</p>
@@ -139,9 +137,9 @@ const StockModal = (props) => {
                         </div>
                         <div className='small-edit-con'>
                             <p className='stock-left2'>Vintage</p>
-                            <p className='stock-left-name'>5 Years old</p>
-                            <p className='stock-left-name'>10 Years old</p>
-                            <p className='stock-left-name'>12 Years old</p>
+                            <p className='stock-left-name1'>5 Years old</p>
+                            <p className='stock-left-name1'>10 Years old</p>
+                            <p className='stock-left-name1'>12 Years old</p>
                             <input className="edit-input-small" required name="vintage1" type="text" defaultValue={props.vintage1} onChange={updateValues}/>
                             <input className="edit-input-small" required name="vintage2" type="text" defaultValue={props.vintage2} onChange={updateValues}/>
                             <input className="edit-input-small" required name="vintage3" type="text" defaultValue={props.vintage3} onChange={updateValues}/>
@@ -149,9 +147,9 @@ const StockModal = (props) => {
                         
                         <div className='small-edit-con'>
                             <p className='stock-left2'>Variations:</p>
-                            <p className='stock-left-name'>5 Years old</p>
-                            <p className='stock-left-name'>10 Years old</p>
-                            <p className='stock-left-name'>12 Years old</p>
+                            <p className='stock-left-name1'>5 Years old</p>
+                            <p className='stock-left-name1'>10 Years old</p>
+                            <p className='stock-left-name1'>12 Years old</p>
                             <input className="edit-input-small" required name="flavour1" type="text" defaultValue={props.flavour1} onChange={updateValues}/>
                             <input className="edit-input-small" required name="flavour2" type="text" defaultValue={props.flavour2} onChange={updateValues}/>
                             <input className="edit-input-small" required name="flavour3" type="text" defaultValue={props.flavour3} onChange={updateValues}/>
@@ -159,9 +157,9 @@ const StockModal = (props) => {
 
                         <div className='small-edit-con'>
                             <p className='stock-left2'>Sizes:</p>
-                            <p className='stock-left-name'>Bottle</p>
-                            <p className='stock-left-name'>Box</p>
-                            <p className='stock-left-name'>Barrel</p>
+                            <p className='stock-left-name1'>Bottle</p>
+                            <p className='stock-left-name1'>Box</p>
+                            <p className='stock-left-name1'>Barrel</p>
                             <input className="edit-input-small" required name="size1" type="text" defaultValue={props.size1} onChange={updateValues}/>
                             <input className="edit-input-small" required name="size2" type="text" defaultValue={props.size2} onChange={updateValues}/>
                             <input className="edit-input-small" required name="size3" type="text" defaultValue={props.size3} onChange={updateValues}/>

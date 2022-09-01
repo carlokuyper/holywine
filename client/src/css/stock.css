@@ -70,11 +70,29 @@
     margin-left: 15px;
 }
 
+.stock-left-blue{   
+    float: left;
+    width: 50%;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 3%;
+    color: #2798D3;
+}
+
 .stock-left-name{
     float: left;
     width: 30%;
     margin: 0;
     margin-left: 15px;
+    font-size: 14px;
+}
+
+.stock-left-name1{
+    float: left;
+    width: 23%;
+    margin: 0;
+    margin-left: 15px;
+    margin-right: 6%;
     font-size: 14px;
 }
 
@@ -94,6 +112,7 @@
 .edit-con{
     width: 55%;
     float: right;
+    margin-top: 20%;
 }
 
 .edit-img{

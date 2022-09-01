@@ -5,27 +5,26 @@ import '../index.css';
 import '../css/checkoutPage.css';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import CheckoutCard from "./CheckoutCard";
+import ChechoutShipingUser from "./ChechoutShipingUser";
+import { useNavigate } from 'react-router-dom';
 
-const CheckoutShiping = (props) => {
+const CheckoutShiping = () => {
 
-    
+    let navigate = useNavigate();
     // Read all the DB Items 
-    const [readProducts, setReadProducts] = useState();
+    const [readUser, setReadUser] = useState();
     const [renderProducts, setRenderProducts] = useState(false);
 
     useEffect(()=>{
-    Axios.get('http://localhost:5000/api/allCart')
+    Axios.get('http://localhost:5000/api/allUsers')
     .then(res =>{
       let data = res.data;
-      const productItem = data.map((item)=> <CheckoutCard key={item._id} productId={item._id} 
-      productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription}
-       
-      price={item.price} image={item.image} vintage={item.vintage} variations={item.variations} size={item.size} qty={item.qty} 
-      
+      const productItem = data.map((item)=> <ChechoutShipingUser key={item._id} productId={item._id} 
+      name={item.name} surname={item.surname} contact={item.contact}
+      address={item.address} username={item.username}  
       editRender={setRenderProducts}/>);
 
-      setReadProducts(productItem);
+      setReadUser(productItem);
       setRenderProducts(false);
     });
     }, [renderProducts]);
@@ -62,120 +61,38 @@ const CheckoutShiping = (props) => {
 
     }
 
-    
-    // Wanted to implement an update feature from cart, but could not get the api to send and update from the card side
-
-    // let defaultFormVals1 = ["date", "productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
-
-    // const [formValues1, setFormValues1] = useState(defaultFormVals1);
-    // const [imageName1, setImageName1] = useState("Upload Image");
-
-    // const [productImage1, setProductImage1] = useState();
-
-    // const getValues1 = (e) =>{
-    // const { name, value } = e.target;
-    // setFormValues1({ ...formValues1, [name]: value });
-    // }
-
-    
-
-    // const getImage1 = (e) => {
-
-    // // This is where Multer comes in
-    // let imageFile = e.target.files[0];
-    // setProductImage1(imageFile);
-
-    // let value = e.target.value;
-    // let imgName = value.substring(12);
-    // setImageName(imgName);
-
-    // let reader = new FileReader();
-    // reader.onload = () => {
-    //     let output = document.getElementById('imgPrev');
-    //     output.src = reader.result;
-    // }; 
-
-    // reader.readAsDataURL(e.target.files[0]);
-
-    // }
-
-    // const addProduct = (e) => {
-    //     e.preventDefault();
-    
-    //     const payloadData = new FormData();
-        
-    //     var mydate1 = Date.now()
-        
-    //     let payload = {
-    //         date: mydate1,
-    //         productName: formValues1['productName'],
-    //         productBrand: formValues1['productBrand'],
-    //         productDescription: formValues1['productDescription'],
-    //         price: +formValues1['price'],
-    //         storageLocation: formValues1['storageLocation'],
-    //         vintage: {
-    //             vintage1: +formValues1['vintage1'],
-    //             vintage2: +formValues1['vintage2'],
-    //             vintage3: +formValues1['vintage3'],
-    //         },
-    //         variations: {
-    //             flavour1: +formValues1['flavour1'],
-    //             flavour2: +formValues1['flavour2'],
-    //             flavour3: +formValues1['flavour3'],
-    //         },
-    //         size: {
-    //             size1: +formValues1['size1'],
-    //             size2: +formValues1['size2'],
-    //             size3: +formValues1['size3'],
-    //         }
-    //     }
-        
-    //     payloadData.append("information", JSON.stringify(payload));
-    //     payloadData.append("image", productImage1);
-    
-    //     console.log(payload);
-
-    //     Axios.post('http://localhost:5000/api/newProduct', payloadData)
-    //     .then((res)=> {
-    //     if(res){
-    //         console.log("Item Added"); 
-    //         setRenderProducts(true);
-    //         props.close();
-    //     }
-    //     })
-    //         .catch(function (error) {
-    //         console.log(error);
-    //         })
-    //     }
+    const payBtn = () => {
+        navigate('/')
+    }
 
     return (
         <>
             <Navbar/>
             <h1 className="page-title">Checkout Page</h1>
             <div className='checkout-holder-con'>
-                <div className='checkout-pay'>
-                    <div className='small-edit-con1'>
-                            <p className='stock-left1'>Product Name</p>
-                            <input className="edit-input-small1" required name="productName" type="text" placeholder="Product Name" onChange={getValues}/>
-                        </div>   
-                        <div className='small-edit-con1'>                          
-                            <p className='stock-left1'>Brand</p>
-                            <input className="edit-input-small1" required name="productBrand" type="text" placeholder="Brand" onChange={getValues}/>
-                        </div>
-                        
-                        <p className='stock-left1'>Description</p>
-                        <textarea className="edit-input-description" required name="productDescription" type="text" placeholder="Product Description" onChange={getValues}/>
+                {readUser}
 
-                        <div className='small-edit-con1'>
-                            <p className='stock-left1'>Storage Location</p>
-                            <input className="edit-input-small1" required name="storageLocation" type="text" placeholder="Storage Location" onChange={getValues}/>
-                        </div>
-                        <div className='small-edit-con1'>
-                            <p className='stock-left1'>Price</p>
-                            <input className="edit-input-small1" required name="price" type="text" placeholder="Price" onChange={getValues}/>
-                        </div>              
+                <form className='checkout-shipping-con' onSubmit={payBtn}>                 
+                    <div className='small-checkout-con'>
+                        <p className='stock-left1'>Name on card: </p>
+                        <input className="checkout-input-small" required name="contact" type="text" placeholder="Name on card"/>
                     </div>
-                </div>
+                    <div className='small-checkout-con'>
+                        <p className='stock-left1'>Card nr: </p>
+                        <input className="checkout-input-small"  required name="contact" type="text" placeholder="Card nr"/>
+                    </div>
+                    <div className='small-checkout-con1'>
+                        <p className='stock-left1'>Expiry date</p>
+                        <input className="checkout-input-small" required name="address" type="text" placeholder="Expiry date"/>
+                    </div>   
+                    <div className='small-checkout-con1'>
+                        <p className='stock-left1'>CVV</p>
+                        <input className="checkout-input-small" required name="address" type="text" placeholder="CVV"/>
+                    </div>      
+                    <button className='checkout-pay-button' type="submit">Update Info</button>      
+                </form>
+            </div>
+            
             
             <Footer/>
         </>

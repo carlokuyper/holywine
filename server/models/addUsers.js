@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const addUser = mongoose.Schema({
+    name: { type: String,required: true},
+    surname: {type: String,required: true},
+    contact: { type: Number,required: true},
+    address: {type: String,required: true},
     username: { type: String,required: true},
     password: {type: String,required: true}
 });

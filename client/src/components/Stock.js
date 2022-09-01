@@ -17,23 +17,6 @@ const Stock = (props) => {
         setModal(<StockAddModal 
           close={setModal} 
           id={props.productId} 
-        //   productName={props.productName} 
-        //   productBrand={props.productBrand} 
-        //   productDescription={props.productDescription} 
-        //   price={props.price}
-    
-        //   storageLocation={props.storageLocation}
-        //   vintageFiveYears={props.vintageFiveYears}
-        //   vintageTenYears={props.vintageTenYears}
-        //   vintageTwelveYears={props.vintageTwelveYears}
-    
-        //   variationsFlavour1={props.variationsFlavour1}
-        //   variationsFlavour2={props.variationsFlavour2}
-        //   variationsFlavour3={props.variationsFlavour3}
-    
-        //   sizeSingle={props.sizeSingle}
-        //   sizeBox={props.sizeBox}
-        //   sizeBarrel={props.sizeBarrel}
         />);
     }
 
@@ -67,11 +50,6 @@ const Stock = (props) => {
 
     const [productImage, setProductImage] = useState();
 
-    const getValues = (e) =>{
-    const { productName, value } = e.target;
-    setFormValues({ ...formValues, [productName]: value });
-    }
-
     const getImage = (e) => {
 
     // This is where Multer comes in
@@ -91,60 +69,6 @@ const Stock = (props) => {
     reader.readAsDataURL(e.target.files[0]);
 
     }
-
-
-    const addProduct = (e) => {
-    e.preventDefault();
-
-    const payloadData = new FormData();
-    var age = +formValues['vintage1'] + +formValues['vintage2'] + +formValues['vintage3'];
-    var flavours = +formValues['flavour1'] + +formValues['flavour2'] + +formValues['flavour3'];
-    var sizes = +formValues['size1'] + +formValues['size2'] + +formValues['size3'];
-    var stock = age + flavours + sizes;
-
-    let payload = {
-        productName: formValues['productName'],
-        productBrand: formValues['productBrand'],
-        productDescription: formValues['productDescription'],
-        price: +formValues['price'],
-        storageLocation: formValues['storageLocation'],
-        age: age,
-        flavours: flavours,
-        sizes: sizes,
-        stock: stock,
-        vintage: {
-            vintage1: +formValues['vintage1'],
-            vintage2: +formValues['vintage2'],
-            vintage3: +formValues['vintage3'],
-        },
-        variations: {
-            flavour1: +formValues['flavour1'],
-            flavour2: +formValues['flavour2'],
-            flavour3: +formValues['flavour3'],
-        },
-        size: {
-            size1: +formValues['size1'],
-            size2: +formValues['size2'],
-            size3: +formValues['size3'],
-        }
-    }
-
-    payloadData.append("information", JSON.stringify(payload));
-    payloadData.append("image", productImage);
-
-    Axios.post('http://localhost:5000/api/newProduct', payloadData)
-    .then((res)=> {
-        if(res){
-            console.log("Item Added"); 
-            setRenderProducts(true);
-        }
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-
-    }
-
     return (
         <>
             <Navbar/>

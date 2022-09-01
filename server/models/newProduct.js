@@ -12,7 +12,7 @@ const newProduct = mongoose.Schema({
     sizes: { type: Number,required: true},
     stock: { type: Number,required: true},
     vintage: {
-        vintage1: { type: String,required: true},
+        vintage1: { type: Number,required: true},
         vintage2: { type: Number,required: true},
         vintage3: { type: Number,required: true},
     },

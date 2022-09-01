@@ -10,6 +10,7 @@ const Dashboard = (props) => {
     // Read all the DB Items and sorts them by default
     const [readProducts, setReadProducts] = useState();
     const [renderProducts, setRenderProducts] = useState(false);
+    const [topTen, setTopTen] = useState();
 
     useEffect(()=>{
 
@@ -43,24 +44,44 @@ const Dashboard = (props) => {
         .then(res =>{
             let data = res.data;
             const productItem = data.map((item)=> <Cards key={item._id} productId={item._id} date={item.date}
-            
             productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription} price={item.price} storageLocation={item.storageLocation} 
             age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={item.image}
-
             vintage1={item.vintage.vintage1} vintage2={item.vintage.vintage2} vintage3={item.vintage.vintage3}
             flavour1={item.variations.flavour1} flavour2={item.variations.flavour2} flavour3={item.variations.flavour3}
             size1={item.size.size1} size2={item.size.size2} size3={item.size.size3}            
 
             editRender={setRenderProductsDate}/>);
+
+            setTopTen(data.slice(-10).map((item)=> <Cards key={item._id} productId={item._id} date={item.date}
+            productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription} price={item.price} storageLocation={item.storageLocation} 
+            age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={item.image}
+            vintage1={item.vintage.vintage1} vintage2={item.vintage.vintage2} vintage3={item.vintage.vintage3}
+            flavour1={item.variations.flavour1} flavour2={item.variations.flavour2} flavour3={item.variations.flavour3}
+            size1={item.size.size1} size2={item.size.size2} size3={item.size.size3}            
+            editRender={setRenderProductsDate}/>))
+
+
             // console.log(productItem);
             const productItems = productItem.sort((a, b) => b.props.date - a.props.date);
+            
             // let productItems = productItem.sort((a, b) => new Date(...a.date.split('/').reverse()) - new Date(...b.date.split('/').reverse()));
             setReadProductsDate(productItems);
             setRenderProductsDate(false);
         });
     }, [renderProductsDate]);
 
-    
+    //Sorting function
+    // const sortArray = type => {
+    //     const types = {
+    //       albums: 'albums',
+    //       members: 'members',
+    //       formed: 'formed_in',
+    //     };
+    //     const sortProperty = types[type];
+    //     const sorted = bands.sort((a, b) => b[sortProperty] - a[sortProperty]);
+    //     console.log(sorted);
+    //     setData(sorted);
+    //   };
     
     return(
         <>
@@ -77,9 +98,15 @@ const Dashboard = (props) => {
 
             <div className="divider">
                 <p className="divider-text"> New arivals</p>
+                {/* <select id='test' onChange={(e) => setFruit(e.target.value)}>
+                    <option value="ascend">Ascend</option>
+                    <option value="descend">Descend</option>
+                    <option value="price">Price</option>
+                </select> */}
             </div>
             <div className="card-con-horizontal ">
-                {readProductsDate}
+                {/* {readProductsDate} */}
+                {topTen}
             </div>
 
             <div className="divider">

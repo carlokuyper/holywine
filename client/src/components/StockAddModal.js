@@ -26,8 +26,6 @@ const StockModal = (props) => {
     setFormValues({ ...formValues, [name]: value });
     }
 
-    
-
     const getImage = (e) => {
 
     // This is where Multer comes in
@@ -97,16 +95,18 @@ const StockModal = (props) => {
         if(res){
             console.log("Item Added"); 
             setRenderProducts(true);
-            props.close();
+            // props.close();
         }
         })
             .catch(function (error) {
             console.log(error);
             })
+            props.close();
         }
 
+
         const closeModal = () => {
-        props.close();
+            props.close();
         }
 
     return (
@@ -142,34 +142,34 @@ const StockModal = (props) => {
                         </div>
                         <div className='small-edit-con'>
                             <p className='stock-left2'>Vintage</p>
-                            <p className='stock-left-name'>5 Years old</p>
-                            <p className='stock-left-name'>10 Years old</p>
-                            <p className='stock-left-name'>12 Years old</p>
-                            <input className="edit-input-small" required name="vintage1" type="text" placeholder="5 Years old" onChange={getValues}/>
+                            <p className='stock-left-name1'>5 Years old</p>
+                            <p className='stock-left-name1'>10 Years old</p>
+                            <p className='stock-left-name1'>12 Years old</p>
+                            <input className="edit-input-small" required name="vintage1" type="number" placeholder="5 Years old" onChange={getValues}/>
                             {/* <p className='stock-left-name'>Vintage</p> */}
-                            <input className="edit-input-small" required name="vintage2" type="text" placeholder="10 Years old" onChange={getValues}/>
+                            <input className="edit-input-small" required name="vintage2" type="number" placeholder="10 Years old" onChange={getValues}/>
                             {/* <p className='stock-left-name'>Vintage</p> */}
-                            <input className="edit-input-small" required name="vintage3" type="text" placeholder="12 Years old" onChange={getValues}/>
+                            <input className="edit-input-small" required name="vintage3" type="number" placeholder="12 Years old" onChange={getValues}/>
                         </div>
                         
                         <div className='small-edit-con'>
                             <p className='stock-left2'>Variations:</p>
-                            <p className='stock-left-name'>5 Years old</p>
-                            <p className='stock-left-name'>10 Years old</p>
-                            <p className='stock-left-name'>12 Years old</p>
-                            <input className="edit-input-small" required name="flavour1" type="text" placeholder="flavour1" onChange={getValues}/>
-                            <input className="edit-input-small" required name="flavour2" type="text" placeholder="flavour2" onChange={getValues}/>
-                            <input className="edit-input-small" required name="flavour3" type="text" placeholder="flavour3" onChange={getValues}/>
+                            <p className='stock-left-name1'>Blackberry</p>
+                            <p className='stock-left-name1'>Cherry</p>
+                            <p className='stock-left-name1'>Plum</p>
+                            <input className="edit-input-small" required name="flavour1" type="number" placeholder="flavour1" onChange={getValues}/>
+                            <input className="edit-input-small" required name="flavour2" type="number" placeholder="flavour2" onChange={getValues}/>
+                            <input className="edit-input-small" required name="flavour3" type="number" placeholder="flavour3" onChange={getValues}/>
                         </div>
 
                         <div className='small-edit-con'>
                             <p className='stock-left2'>Sizes:</p>
-                            <p className='stock-left-name'>Bottle</p>
-                            <p className='stock-left-name'>Box</p>
-                            <p className='stock-left-name'>Barrel</p>
-                            <input className="edit-input-small" required name="size1" type="text" placeholder="Bottle" onChange={getValues}/>
-                            <input className="edit-input-small" required name="size2" type="text" placeholder="Box" onChange={getValues}/>
-                            <input className="edit-input-small" required name="size3" type="text" placeholder="Barrel" onChange={getValues}/>
+                            <p className='stock-left-name1'>Bottle</p>
+                            <p className='stock-left-name1'>Box</p>
+                            <p className='stock-left-name1'>Barrel</p>
+                            <input className="edit-input-small" required name="size1" type="number" placeholder="Bottle" onChange={getValues}/>
+                            <input className="edit-input-small" required name="size2" type="number" placeholder="Box" onChange={getValues}/>
+                            <input className="edit-input-small" required name="size3" type="number" placeholder="Barrel" onChange={getValues}/>
                         </div>
                         <button className='edit-button' type="submit">Add Product</button>
                         <h2 className="delete-button" onClick={closeModal}>Close</h2>

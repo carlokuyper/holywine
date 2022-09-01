@@ -3,12 +3,11 @@
     margin-left: 10%;
     margin-top: -1%;
     float: left;
-
 }
 
 .checkout-item-con {
     width: 70%;
-    height: 200px;
+    height: 270px;
     margin-right: 1%;
     margin-top: .5%;
     margin-bottom: .5%;
@@ -175,3 +174,91 @@
 
     margin-right: 2%;
 }
+
+
+.checkout-user-con{
+    width: 30%;
+    height: auto;
+    padding-bottom: 1%;
+    margin-top: .5%;
+    margin-bottom: .5%;
+    background-color: #222126;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+    float: left;
+}
+
+.checkout-left{
+    float: left;
+    width: 100%;
+    margin: 0;
+    margin-top: 3%;
+    margin-left: 4%;
+}
+
+.small-checkout-con{
+    width: 100%;
+    float: left;
+
+    margin-left: 3.5%;
+}
+
+.small-checkout-con1{
+    width: 45%;
+    float: left;
+    margin-top: 2%;
+    margin-left: 3.5%;
+}
+
+.checkout-input-small{
+    height: 30px;
+    width: 80%;
+    padding-left: 5%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+    margin-top: 3%;
+    margin-left: 15px;
+}
+
+.checkout-user-button{
+    width: 30%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 5%;
+    margin-left: 7%;
+    text-decoration: none;
+    color: white;
+}
+
+.checkout-pay-button{
+    width: 25%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    background-color: #D32748;
+    border-radius: 10px;
+    float: left;
+    margin-top: 2%;
+    margin-left: 5.5%;
+    text-decoration: none;
+    color: white;
+}
+
+.checkout-shipping-con{
+    width: 65%;
+    height: auto;
+    padding-bottom: 1%;
+    margin-top: .5%;
+    margin-bottom: .5%;
+    margin-left: 2%;
+    background-color: #222126;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+    float: left;
+}
+

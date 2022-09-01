@@ -55,11 +55,11 @@ const StockCards = (props) => {
           <img className='stock-wine-img' src={images} />
           
           <p className='stock-left'>{props.productName}</p>
-          <p className='stock-left'>{props.productBrand}</p>
-          <div className='stock-nr-con' >
+          <p className='stock-left-blue'>{props.productBrand}</p>
+          {/* <div className='stock-nr-con' >
               <p className='stock-left-1'>Date: </p>
               <p className='stock-left-1'>{itemDate}</p>
-          </div>
+          </div> */}
 
           <div className='stock-nr-con' >
               <p className='stock-left-1'>Stock: </p>

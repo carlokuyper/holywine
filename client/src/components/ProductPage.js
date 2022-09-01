@@ -119,13 +119,15 @@ const ProductPage = (props) => {
         }
     
         payloadData.append("information", JSON.stringify(payload));
-    
+
         console.log(payload);
         Axios.post('http://localhost:5000/api/newCart', payload)
         .then((res)=> {
             if(res){
             console.log("Item Added"); 
             setRenderProducts(true);
+            alert("Product added to cart")
+            navigate('/')
             }
         })
         .catch(function (error) {

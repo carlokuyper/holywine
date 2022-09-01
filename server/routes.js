@@ -232,6 +232,10 @@ router.delete ('/api/deleteOrder/:id', async (req, res) => {
 router.post('/api/adduser', (req, res) =>{
 
     const newUser = new newUserModel({
+        name: req.body.name, 
+        surname: req.body.surname,
+        contact: req.body.contact, 
+        address: req.body.address,
         username: req.body.username, 
         password: req.body.password 
     }); 
@@ -244,6 +248,28 @@ router.post('/api/adduser', (req, res) =>{
        res.status(400).json({msg:"There is an error", err}); 
     });
 });
+
+router.get('/api/allUsers', async (req, res) => {
+    const findUsers = await newUserModel.find();
+    res.json(findUsers);
+})
+
+
+router.patch ('/api/updateUser/:id', async (req, res) => {
+    console.log(req.body);
+    const findUsers = await newUserModel.updateOne(
+        {_id:req.params.id},
+        {$set: {
+                username: req.body.username,
+                name: req.body.name,
+                surname: req.body.surname,
+                contact: req.body.contact,
+                address: req.body.address,
+            }
+        }
+    );
+    res.json(findUsers);
+})
 
 router.post('/api/loginuser', async (req, res) => {
 
@@ -280,6 +306,41 @@ router.post('api/verifyToken', async(req, res) => {
         res.json({status: "error", verified: false})
     }
 });
+
+//This is where all ODERS will be managed
+router.post('/api/newOrder', uploadProductImage.single('image'), (req, res) =>{
+    
+    let data = JSON.parse(req.body.information);
+    console.log(req.file.filename);
+
+    const newProduct = new productSchema ({
+        productName: data.productName,
+        productBrand: data.productBrand,
+        productDescription: data.productDescription,
+        price: data.price,
+        storageLocation: data.storageLocation,
+        
+    });
+
+    newProduct.save()
+    .then(item => {
+        res.json(item);
+    })
+    .catch(err => {
+        res.status(400).json({msg: "There was an error ", err: err});
+    })
+});
+
+
+router.get('/api/allOrders', async (req, res) => {
+    const findProducts = await productSchema.find();
+    res.json(findProducts);
+})
+
+router.delete ('/api/deleteOrder/:id', async (req, res) => {
+    const findProduct = await productSchema.remove({_id:req.params.id});
+    res.json(findProduct);
+})
 
 
 module.exports = router;
