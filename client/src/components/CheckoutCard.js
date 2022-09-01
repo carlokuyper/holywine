@@ -11,11 +11,17 @@ const CheckoutCard = (props) => {
     const [selectedVariations, setSelectedVariations] = useState(props.variations);
     const [selectedSize, setSelectedSize] = useState(props.size);
     const [selectedQty, setSelectedQty] = useState(props.qty);
+    // const totalPrice = useState(props.totalPrice);
     
+    //Caluclate price
+    let totalPrice = props.price * selectedQty;
+
+    // const priceCal = totalPrice
+
     let editFormValues = {productId: props.productId,
         productName: props.productName, productBrand: props.productBrand, 
         productDescription: props.productDescription,
-        price: props.price, vintage: selectedVintage, 
+        totalPrice: totalPrice, price: props.price, vintage: selectedVintage, 
         variations: selectedVariations, size: selectedSize, 
         qty: selectedQty, image: props.image};
         // console.log(editFormValues);
@@ -47,7 +53,7 @@ const CheckoutCard = (props) => {
 
     }
     const deleteItem = () => {
-        console.log(props.productId);
+        // console.log(props.productId);
     
         if (window.confirm("Are you sure you want to remove: " + props.productName) === true) {
             Axios.delete('http://localhost:5000/api/deleteCart/' + props.productId)
@@ -65,10 +71,7 @@ const CheckoutCard = (props) => {
       //get img
       let images = "http://localhost:5000/productImages/" + props.image
 
-      //Caluclate price
-      let totalPrice = props.price * selectedQty;
-
-      <CheckoutPagePrice price={props.price} totalPrice={totalPrice} />
+    
 
     return(
         <>
@@ -89,10 +92,10 @@ const CheckoutCard = (props) => {
                 </div> */}
 
                 <div  className='checkout-options-con'>
-                    <h2 className='checkout-text-right'>Total: R {totalPrice}</h2> 
+                    <h2 className='checkout-text-right' >Total: R {totalPrice}</h2> 
                     <p className='checkout-text-right'> Price: R {props.price}</p> 
                     <div className='checkout-delete-con'>
-                    <p className='checkout-text-right' onClick={updateProd} >updatye</p>
+                    <p className='checkout-text-right' onClick={updateProd} >Update</p>
                         <p className='checkout-text-right-1' onClick={deleteItem} >Delete</p>
                         <img src='./images/delete.png' className='checkout-edit-img' onClick={deleteItem} />  
                     </div>

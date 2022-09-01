@@ -75,7 +75,7 @@ const CheckoutPage = (props) => {
       let arrayData = []
       const productItem1 = data.map((item)=> <CheckoutPagePrice key={item._id} productId={item._id}       
       productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription}
-      price={item.price} image={item.image} vintage={item.vintage} variations={item.variations} size={item.size} qty={item.qty} 
+      price={item.price} totalPrice={item.totalPrice}  image={item.image} vintage={item.vintage} variations={item.variations} size={item.size} qty={item.qty} 
       editRender={setRenderProducts1}/>);
 
       setReadProducts1(productItem1);

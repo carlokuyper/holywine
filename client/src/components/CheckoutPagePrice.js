@@ -10,8 +10,29 @@ import CheckoutCard from "./CheckoutCard";
 
 const CheckoutPagePrice = (props) => {
 
-  
+    const [cartArray, setCartArray] = useState();
+
     let navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        Axios.get('http://localhost:5000/api/allCart').then(res =>{
+            let arrayData = res.data;
+            setCartArray(arrayData);
+        });
+    },[])
+
+    let cartPrice = 0;
+
+    for (let i = 0; i < cartArray?.length; i++) {
+        console.log(cartArray[i]?.totalPrice);
+        // cartPrice = (cartArray[i]?.price * cartArray[i]?.qty)
+        cartPrice += cartArray[i]?.totalPrice
+    } 
+    
+    // console.log(cartPrice);
+
+    let cartTotal = cartPrice + 60;
 
     let formVals = ["username", "name", "surname", "address", "contact", "password"];
   
@@ -22,48 +43,47 @@ const CheckoutPagePrice = (props) => {
     setFormValues({ ...formValues, [name]: value });
     }
   
-    const addOrder = (e) => {
-        e.preventDefault();   
-        let payload = {
-            productName: props.productName, 
-            productBrand: props.productBrand,
-            productDescription: props.productDescription,
-            price: props.price, 
-            vintage: props.vintage,
-            variations: props.variations,
-            size: props.size,
-            qty: props.qty,
-        }
+    // const addOrder = (e) => {
+    //     e.preventDefault();  
+    //     let payload = {
+    //         allCart: cartArray[1],
+    //     }
+        
   
-        console.log(payload);
+    //     console.log(payload);
   
-        Axios.post('http://localhost:5000/api/newOrder', payload)
-        .then((res)=> {
-            if(res){
-            console.log("User Added");
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-    }  
-    let test = [0].props;
-    console.log(test);
+    //     Axios.post('http://localhost:5000/api/addOrder', payload)
+    //     .then((res)=> {
+    //         if(res){
+    //         console.log("User Added");
+    //         }
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    // } 
+
+    const addOrder = (
+        navigate('/CheckoutShiping')
+    )
     
     return (
         <>
-            <form className='checkout-pay' onSubmit={addOrder}>
-                <h3 className='checkout-pay-title'>Here </h3>
+            <form className='checkout-pay'>
+                <h3 className='checkout-pay-title'>Cart Total </h3>
                 <div className='checkout-total-price'>
                         <p className='checkout-total'>Shipping: </p>
-                        <p className='checkout-total-nr'>60</p>
-                        <p className='checkout-total-nr'>R</p>
+                        <p className='checkout-total-nr'>R 60</p>
                 </div>
                 <div className='checkout-total-price'>
                         <p className='checkout-total'>Total: </p>
-                        <p className='checkout-total-nr'>R 684</p>
+                        <p className='checkout-total-nr'>R {cartPrice}</p>
                 </div>
-                <button className='checkout-product-button'  type="submit">Checkout</button>
+                <div className='checkout-total-price'>
+                        <h3 className='checkout-total'>Total: </h3>
+                        <h3 className='checkout-total-nr'>R {cartTotal}</h3>
+                </div>
+                <button className='checkout-product-button' type="submit" onClick={addOrder}>Checkout</button>
             </form>
         </>
     );

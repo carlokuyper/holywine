@@ -4,6 +4,7 @@ const cartSchema = mongoose.Schema({
     productName: { type: String, required: true},
     productBrand: { type: String, required: true},
     productDescription: { type: String, required: true},
+    totalPrice: { type: Number,required: true},
     price: { type: Number,required: true},
     image: {type: String, required: true},
     vintage: {type: String, required: true},

@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const productSchema = require('./models/newProduct');
 const newUserModel = require('./models/addUsers');
-const orderSchema = require('./models/orders');
+const orderSchema = require('./models/newOrder');
 const cartSchema = require('./models/newCart');
 
 
@@ -139,6 +139,7 @@ router.post('/api/newCart', (req, res) =>{
         productBrand: data.productBrand,
         productDescription: data.productDescription,
         price: data.price,
+        totalPrice: data.totalPrice,
         image: data.image,
         vintage: data.vintage,
         variations: data. variations,
@@ -164,6 +165,7 @@ router.patch ('/api/updateCart/:id', async (req, res) => {
                 productName: req.body.productName,
                 productBrand: req.body.productBrand,
                 productDescription: req.body.productDescription,
+                totalPrice: +req.body.price,
                 price: +req.body.price,
                 vintage: req.body.vintage,
                 variations: req.body.variations,
@@ -191,15 +193,7 @@ router.delete ('/api/deleteCart/:id', async (req, res) => {
 
 router.post('/api/addOrder', (req, res) => {
     const newOrder = new orderSchema ({
-        productName: req.body.productName,
-        userName: req.body.userName,
-        address: req.body.address,
-        contact: req.body.contact,
-        productBrand: req.body.productBrand,
-        price: req.body.price,
-        vintage: req.body.vintage,
-        variations: req.body.variations,
-        size: req.body.size,
+        allCart: req.body.allCart
     });
 
     newOrder.save()
@@ -214,11 +208,6 @@ router.post('/api/addOrder', (req, res) => {
 
 router.get('/api/allOrders', async (req, res) => {
     const findOrders = await orderSchema.find();
-    res.json(findOrders);
-})
-
-router.get ('/api/oneOrder/:id', async (req, res) => {
-    const findOrders = await orderSchema.findById(req.params.id);
     res.json(findOrders);
 })
 
@@ -307,40 +296,35 @@ router.post('api/verifyToken', async(req, res) => {
     }
 });
 
-//This is where all ODERS will be managed
-router.post('/api/newOrder', uploadProductImage.single('image'), (req, res) =>{
+// //This is where all ODERS will be managed
+// router.post('/api/orders', uploadProductImage.single('image'), (req, res) =>{
     
-    let data = JSON.parse(req.body.information);
-    console.log(req.file.filename);
+//     let data = JSON.parse(req.body.information);
+//     console.log(req.file.filename);
 
-    const newProduct = new productSchema ({
-        productName: data.productName,
-        productBrand: data.productBrand,
-        productDescription: data.productDescription,
-        price: data.price,
-        storageLocation: data.storageLocation,
-        
-    });
+//     const newOrders = new orderSchema ({
+//         allCart: data.allCart,       
+//     });
 
-    newProduct.save()
-    .then(item => {
-        res.json(item);
-    })
-    .catch(err => {
-        res.status(400).json({msg: "There was an error ", err: err});
-    })
-});
+//     newOrders.save()
+//     .then(item => {
+//         res.json(item);
+//     })
+//     .catch(err => {
+//         res.status(400).json({msg: "There was an error ", err: err});
+//     })
+// });
 
 
-router.get('/api/allOrders', async (req, res) => {
-    const findProducts = await productSchema.find();
-    res.json(findProducts);
-})
+// router.get('/api/allOrders', async (req, res) => {
+//     const findOrders = await productSchema.find();
+//     res.json(findOrders);
+// })
 
-router.delete ('/api/deleteOrder/:id', async (req, res) => {
-    const findProduct = await productSchema.remove({_id:req.params.id});
-    res.json(findProduct);
-})
+// router.delete ('/api/deleteOrder/:id', async (req, res) => {
+//     const findOrders = await productSchema.remove({_id:req.params.id});
+//     res.json(findOrders);
+// })
 
 
 module.exports = router;

@@ -89,7 +89,7 @@ const ProductPage = (props) => {
     const [selectedQty, setSelectedQty] = useState(1);
     // console.log(name + price + " " + image + " " + selectedVintage + " " + selectedSize);
 
-    let totalPrice = (productData.price * selectedQty) + 60;
+    let totalPrice = (productData.price * selectedQty);
 
     const [renderProducts, setRenderProducts] = useState(false);
     let defaultFormVals = ["name", "price", "image"];
@@ -110,6 +110,7 @@ const ProductPage = (props) => {
             productName:  productData.productName,
             productBrand:  productData.productBrand,
             productDescription:  productData.productDescription,
+            totalPrice: totalPrice,
             price: productData.price,
             image: productData.image, 
             vintage: selectedVintage,
