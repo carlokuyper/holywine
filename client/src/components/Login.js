@@ -11,6 +11,7 @@ const Login = () => {
     let formVals = ["username", "password"];
 
     const [formValues, setFormValues] = useState(formVals);
+    const [userId, setUserId] = useState();
 
     const getValues = (e) =>{
     const { name, value } = e.target;
@@ -33,9 +34,21 @@ const Login = () => {
           } else {
             if(res.data.user){
             //   alert("Welcome user")
-              sessionStorage.setItem('token', res.data.user);
+              
+              // Axios.get('http://localhost:5000/api/allUsers')
+              // .then(res =>{
+              //   let data = res.data;
+              //       sessionStorage.setItem('id', res.data._id);
+                    
+              //       const price = data.map( e => e.price)
+              //       setUserId(price)
+              // });
+              // console.log(userId);
+              
+              // sessionStorage.setItem('token', res.data.user);
+              // console.log(res.data);
               navigate("/")
-            } else {alert ("Incorect")}
+            } else {alert ("Incorrect")}
             
           }
         })
@@ -45,9 +58,8 @@ const Login = () => {
     }
 
     const signUp = () => {
-        navigate('/Register');
+        // navigate('/Register');
         sessionStorage.clear();
-
     }
 
     return(

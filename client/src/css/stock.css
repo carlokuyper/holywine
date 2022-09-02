@@ -124,12 +124,23 @@
 
 .stock-modal{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.644);
     position: absolute;
     top: 0;
     bottom: 0;
     z-index: 999;
+    float: left;
+}
+.stock-modal-edit{
+    width: 80.5vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.644);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    float: left;
 }
 
 .edit-stock-con{

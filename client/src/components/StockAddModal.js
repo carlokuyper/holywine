@@ -14,7 +14,8 @@ const StockModal = (props) => {
     const [renderProducts, setRenderProducts] = useState(false);
 
 
-    let defaultFormVals = ["date", "productName", "productBrand", "productDescription", "price", "storageLocation", "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
+    let defaultFormVals = ["date", "productName", "productBrand", "productDescription", "price", "storageLocation",
+    "vintage1", "vintage2", "vintage3", "flavour1", "flavour2", "flavour3", "size1", "size2", "size3"];
 
     const [formValues, setFormValues] = useState(defaultFormVals);
     const [imageName, setImageName] = useState("Upload Image");

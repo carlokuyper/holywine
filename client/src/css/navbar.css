@@ -65,7 +65,7 @@ a{
 .dropdown {
   width: 3%;
   float: right;
-  margin-top: .35%;
+  margin-top: 1%;
   margin-right: 9%;
   border-radius: 5px;
 }
@@ -104,7 +104,7 @@ a{
 .cart-dropdown {
   width: 3%;
   float: right;
-  margin-top: .35%;
+  margin-top: 1%;
   margin-right: 6%;
   border-radius: 5px;
 }

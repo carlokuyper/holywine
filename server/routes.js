@@ -188,12 +188,15 @@ router.delete ('/api/deleteCart/:id', async (req, res) => {
     res.json(findCart);
 })
 
-
 //This is where all ORDERS will be managed
 
 router.post('/api/addOrder', (req, res) => {
+    console.log(req.body);
+    
     const newOrder = new orderSchema ({
-        allCart: req.body.allCart
+        productName: req.body.productName,
+        productBrand: req.body.productBrand,
+        
     });
 
     newOrder.save()

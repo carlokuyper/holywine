@@ -29,11 +29,17 @@ const Cards = (props) => {
     navigate('/productpage');
   }
 
+  let rating = Math.floor(Math.random(2) * 5);
+
   return(
       <div className="item-con">
           <img onClick={toProduct} className='wine-img'  src={imgURL}/>
           <p  onClick={toProduct}className='left-text'>{props.productName}</p>
           <p className='left-link-text'>{props.productBrand}</p> 
+          <div className='rating-con'>
+              <img className='star-icon1' src='./images/star.png'/>
+              <p className='rating-text'>{rating}</p>
+          </div>
           <p className='left-text'>R {props.price}</p>     
           <div onClick={toProduct} className='view-product-button'>View Product</div>
       </div>

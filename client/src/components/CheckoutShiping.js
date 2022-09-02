@@ -68,28 +68,28 @@ const CheckoutShiping = () => {
     return (
         <>
             <Navbar/>
-            <h1 className="page-title">Checkout Page</h1>
+            <h1 className="page-title">Payment</h1>
             <div className='checkout-holder-con'>
                 {readUser}
 
                 <form className='checkout-shipping-con' onSubmit={payBtn}>                 
                     <div className='small-checkout-con'>
                         <p className='stock-left1'>Name on card: </p>
-                        <input className="checkout-input-small" required name="contact" type="text" placeholder="Name on card"/>
+                        <input className="checkout-input-small-1" required name="contact" type="text" placeholder="Name on card"/>
                     </div>
                     <div className='small-checkout-con'>
                         <p className='stock-left1'>Card nr: </p>
-                        <input className="checkout-input-small"  required name="contact" type="text" placeholder="Card nr"/>
+                        <input className="checkout-input-small-1"  required name="contact" type="text" placeholder="Card nr"/>
                     </div>
                     <div className='small-checkout-con1'>
-                        <p className='stock-left1'>Expiry date</p>
-                        <input className="checkout-input-small" required name="address" type="text" placeholder="Expiry date"/>
+                        <p className='checkout-left1'>Expiry date</p>
+                        <input className="checkout-input-small-1" required name="address" type="text" placeholder="Expiry date"/>
                     </div>   
                     <div className='small-checkout-con1'>
-                        <p className='stock-left1'>CVV</p>
-                        <input className="checkout-input-small" required name="address" type="text" placeholder="CVV"/>
+                        <p className='checkout-left1'>CVV</p>
+                        <input className="checkout-input-small-1" required name="address" type="text" placeholder="CVV"/>
                     </div>      
-                    <button className='checkout-pay-button' type="submit">Update Info</button>      
+                    <button className='checkout-pay-button' type="submit">Pay</button>      
                 </form>
             </div>
             

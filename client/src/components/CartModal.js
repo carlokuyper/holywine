@@ -28,7 +28,7 @@ const CartModal = (props) => {
             <div className='cart-tex-con'>
                 <a href="/ProductPage"><p className='cart-left-text-link'>{props.productName}</p></a>
                 
-                <p className='cart-left-text'>R {props.price}</p>     
+                <p className='cart-left-text'>R {props.totalPrice}</p>     
             </div>
             <img className='cart-delete' onClick={deleteItem} src='./images/blackDelete.png'/>
 

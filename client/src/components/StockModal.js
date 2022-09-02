@@ -71,7 +71,7 @@ const StockModal = (props) => {
       })
   }, []);
 
-  //cHECKS IMG 
+  //Tried to implement a feature to change/update the image
   //   console.log(imagetest)
 
   const getImage = (e) => {
@@ -104,7 +104,7 @@ const StockModal = (props) => {
       }
 
     return (
-        <div className='stock-modal'>
+        <div className='stock-modal-edit'>
             <div className='edit-stock-con'>
                 <form className='edit-top-con' onSubmit={updateProd}>
                     <div className='addStock-left-con'>

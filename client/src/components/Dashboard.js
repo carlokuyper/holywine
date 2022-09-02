@@ -110,7 +110,7 @@ const Dashboard = (props) => {
             </div>
 
             <div className="divider">
-                <p className="divider-text"> Sort by: Price</p>
+                <p className="divider-text"> All items</p>
             </div>
             <div id="big-card-con">
                 {readProducts}

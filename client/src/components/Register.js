@@ -5,7 +5,6 @@ import '../index.css';
 import '../css/login.css';
 
 const Register = () => {
-
   
   let navigate = useNavigate();
 

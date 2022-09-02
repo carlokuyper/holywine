@@ -16,6 +16,8 @@ const CheckoutCard = (props) => {
     //Caluclate price
     let totalPrice = props.price * selectedQty;
 
+    
+
     // const priceCal = totalPrice
 
     let editFormValues = {productId: props.productId,
@@ -95,7 +97,7 @@ const CheckoutCard = (props) => {
                     <h2 className='checkout-text-right' >Total: R {totalPrice}</h2> 
                     <p className='checkout-text-right'> Price: R {props.price}</p> 
                     <div className='checkout-delete-con'>
-                    <p className='checkout-text-right' onClick={updateProd} >Update</p>
+                    <p className='checkout-text-right-blue' onClick={updateProd} >Update</p>
                         <p className='checkout-text-right-1' onClick={deleteItem} >Delete</p>
                         <img src='./images/delete.png' className='checkout-edit-img' onClick={deleteItem} />  
                     </div>
@@ -112,9 +114,9 @@ const CheckoutCard = (props) => {
                     <p className='product-variations'>Variations</p>
                     <select className='product-select1' defaultValue={selectedVariations} name="variations" id="variations" onChange={(e) => setSelectedVariations(e.target.value)} onClick={updateValues} required>
                         <option value="" selected disabled hidden>Select an Option</option>
-                        <option value="blackberry">blackberry</option>
-                        <option value="cherry">cherry</option>
-                        <option value="plum">plum</option>
+                        <option value="blackberry">Blackberry</option>
+                        <option value="cherry">Cherry</option>
+                        <option value="plum">Plum</option>
                     </select>
 
                     <p className='product-variations1'>Size</p>

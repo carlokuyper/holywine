@@ -42,15 +42,15 @@ const ChechoutShipingUser = (props) => {
     return (
         <form className='checkout-user-con' onSubmit={updateProd}>
             <div className='small-checkout-con'>
-                <p className='checkout-left'>Username: </p>
-                <p className='checkout-left'>Name: </p>
-                <p className='checkout-left'>Surname: </p>
+                <p className='checkout-left'>Username: {props.username}</p>
+                <p className='checkout-left'>Name: {props.name}</p>
+                <p className='checkout-left'>Surname: {props.surname}</p>
             </div>
-            <div className='small-checkout-con'>
+            <div className='small-checkout-con2'>
                 <p className='stock-left1'>Contact: </p>
                 <input className="checkout-input-small" defaultValue={props.contact} required name="contact" type="text" placeholder="contact" onChange={updateValues}/>
             </div>
-            <div className='small-checkout-con'>
+            <div className='small-checkout-con2'>
                 <p className='stock-left1'>Address: </p>
                 <input className="checkout-input-small" defaultValue={props.address} required name="address" type="text" placeholder="address" onChange={updateValues}/>
             </div>        

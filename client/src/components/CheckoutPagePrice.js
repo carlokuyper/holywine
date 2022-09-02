@@ -23,14 +23,27 @@ const CheckoutPagePrice = (props) => {
     },[])
 
     let cartPrice = 0;
+    
+
+    let arrayTesting = []
 
     for (let i = 0; i < cartArray?.length; i++) {
-        console.log(cartArray[i]?.totalPrice);
+        // console.log(cartArray[i]?.totalPrice);
         // cartPrice = (cartArray[i]?.price * cartArray[i]?.qty)
-        cartPrice += cartArray[i]?.totalPrice
+        cartPrice += cartArray[i]?.totalPrice;
+        
+        const arrayTest = [cartArray[i]?.totalPrice, cartArray[i]?.price, "BMW"];
+
+        let idea1 = cartArray[i]?.totalPrice
+        let idea2 = cartArray[i]?.price
+        arrayTesting.push({"totalPrice": cartArray[i]?.totalPrice, "Price" : cartArray[i]?.price})
+        // const arrayTesting = [idea1, idea2]
+        // console.log(arrayTesting);
     } 
     
-    // console.log(cartPrice);
+    console.log(arrayTesting);
+
+
 
     let cartTotal = cartPrice + 60;
 
@@ -43,29 +56,28 @@ const CheckoutPagePrice = (props) => {
     setFormValues({ ...formValues, [name]: value });
     }
   
-    // const addOrder = (e) => {
-    //     e.preventDefault();  
-    //     let payload = {
-    //         allCart: cartArray[1],
-    //     }
+    const addOrder = (e) => {
+        e.preventDefault();  
+        console.log(arrayTesting);
+        let payload = arrayTesting;
         
+        
+        console.log(payload);
   
-    //     console.log(payload);
-  
-    //     Axios.post('http://localhost:5000/api/addOrder', payload)
-    //     .then((res)=> {
-    //         if(res){
-    //         console.log("User Added");
-    //         }
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
-    // } 
+        Axios.post('http://localhost:5000/api/addOrder', payload)
+        .then((res)=> {
+            if(res){
+            console.log("Order Added");
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    } 
 
-    const addOrder = (
-        navigate('/CheckoutShiping')
-    )
+    // let addOrder = (
+    //     navigate('/CheckoutShiping')
+    // )
     
     return (
         <>
@@ -83,7 +95,8 @@ const CheckoutPagePrice = (props) => {
                         <h3 className='checkout-total'>Total: </h3>
                         <h3 className='checkout-total-nr'>R {cartTotal}</h3>
                 </div>
-                <button className='checkout-product-button' type="submit" onClick={addOrder}>Checkout</button>
+                <a href='http://localhost:3000/CheckoutShiping'><div className='checkout-product-button' type="submit" >Checkout</div></a>
+                {/* <button className='checkout-product-button' type="submit" >Checkout</button> */}
             </form>
         </>
     );

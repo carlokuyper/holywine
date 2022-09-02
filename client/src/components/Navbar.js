@@ -16,6 +16,8 @@ const Navbar = () => {
     // Read all the DB Items 
     const [readProducts, setReadProducts] = useState();
     const [renderProducts, setRenderProducts] = useState(false);
+    
+    const [calTotalPrice, setCalTotalPrice] = useState();
 
     useEffect(()=>{
     Axios.get('http://localhost:5000/api/allCart')
@@ -25,11 +27,13 @@ const Navbar = () => {
       productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription}
        
       price={item.price} image={item.image} vintage={item.vintage} variations={item.variations} size={item.size} qty={item.qty} 
-      
+      totalPrice={item.totalPrice}
       editRender={setRenderProducts}/>);
 
       setReadProducts(productItem);
       setRenderProducts(false);
+      const totalPrice = data.map( e => e.totalPrice).reduce((prev, curr, indx) => {return prev + curr}, 0)
+      setCalTotalPrice(totalPrice)
     });
     }, [renderProducts]);
 
@@ -102,8 +106,7 @@ const Navbar = () => {
                     <div className='cart-total-con'>
                         <div className='cart-total-price'>
                             <p className='cart-total'>Total: </p>
-                            <p className='cart-total-nr'>R</p>
-                            <p className='cart-total-nr'>684</p>
+                            <p className='cart-total-nr'>R {calTotalPrice}</p>
                         </div>
                         <a href='/CheckoutPage'><div className='checkout-button'>Checkout</div></a>
                     </div>

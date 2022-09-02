@@ -61,8 +61,53 @@ const OrderItems = (props) => {
 
     }
 
+
+    let productId = sessionStorage.getItem("productId");
+    console.log(productId);
+
+    const [imgUrl, setImgUrl] = useState();
+
+    const [productData, setProductData] = useState({
+        productName: "",
+        productPrice: "",
+        productDesc: "",
+        productStock: "",
+        varOne: "",
+        varTwo: "",
+        varThree: "", 
+        image:""
+    });
+
+    const backHome = () =>{
+        sessionStorage.clear();
+        navigate("/");
+    }
+
+    useEffect(()=>{
+        Axios.get('http://localhost:5000/api/oneproduct/' + productId)
+        .then(res => {
+            let data = res.data;
+            setProductData({
+                productName: data.name,
+                productPrice: data.price,
+                productDesc: data.description,
+                productStock: data.stock,
+                varOne: data.variations.green,
+                varTwo: data.variations.red,
+                varThree: data.variations.blue
+            })
+            let URL = 'http://localhost:5000/productImages/' + data.image;
+            setImgUrl(URL);
+
+        })
+    }, []);
+    
+
+
     const [renderProducts1, setRenderProducts1] = useState(false);
     const [readProducts1, setReadProducts1] = useState();
+
+    const [ids, setIds] = useState();
     
     useEffect(()=>{
         Axios.get('http://localhost:5000/api/allCart')
@@ -77,9 +122,14 @@ const OrderItems = (props) => {
     
           setReadProducts1(productItem1);
           setRenderProducts1(false);
+            
+          const idss = data.map( e => e._id);
+          setIds(idss)
         });
         }, [renderProducts1]);
-    
+        
+        console.log(ids);
+        
         let defaultFormVals1 = ["name", "price", "image", "vintage", "variations", "size", "qty"];
     
         const [formValues1, setFormValues1] = useState(defaultFormVals1);
@@ -87,25 +137,23 @@ const OrderItems = (props) => {
     
         const [productImage1, setProductImage1] = useState();
 
-        const deleteItem = () => {
-            console.log(props.productId);
-        
-            if (window.confirm("Product(s) are shiped") === true) {
-                Axios.delete('http://localhost:5000/api/deleteCart/' + props.productId)
-                .then((res)=> {
-                  if(res){
-                     console.log("Deleted");
-                     props.editRender(true);
-                  }
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
-            } 
-        
-         
-        
-          }
+        const deleteItem = (e) => {
+            e.preventDefault();  
+            for(let i=0; i < ids.length; i++){
+                if (window.confirm("Product(s) are shiped") === true) {
+                    Axios.delete('http://localhost:5000/api/deleteCart/' + ids[i])
+                    .then((res)=> {
+                      if(res){
+                         console.log("Deleted");
+                         props.editRender(true);
+                      }
+                  })
+                  .catch(function (error) {
+                      console.log(error);
+                  });
+                } 
+            }
+        }
 
     return (
         <>

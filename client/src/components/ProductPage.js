@@ -139,11 +139,54 @@ const ProductPage = (props) => {
     
     // {props.price}
 
+
+    
+    // Read all the DB Items and sorts them by date
+    const [readProductsDate, setReadProductsDate] = useState();
+    const [renderProductsDate, setRenderProductsDate] = useState(false);
+    const [topTen, setTopTen] = useState();
+
+    useEffect(()=>{
+
+        //Gets all items from DB
+        Axios.get('http://localhost:5000/api/allProducts')
+        .then(res =>{
+            let data = res.data;
+            const productItem = data.map((item)=> <Cards key={item._id} productId={item._id} date={item.date}
+            productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription} price={item.price} storageLocation={item.storageLocation} 
+            age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={item.image}
+            vintage1={item.vintage.vintage1} vintage2={item.vintage.vintage2} vintage3={item.vintage.vintage3}
+            flavour1={item.variations.flavour1} flavour2={item.variations.flavour2} flavour3={item.variations.flavour3}
+            size1={item.size.size1} size2={item.size.size2} size3={item.size.size3}            
+
+            editRender={setRenderProductsDate}/>);
+
+            setTopTen(data.slice(-10).map((item)=> <Cards key={item._id} productId={item._id} date={item.date}
+            productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription} price={item.price} storageLocation={item.storageLocation} 
+            age={item.age} flavours={item.flavours} sizes={item.sizes} stock={item.stock} image={item.image}
+            vintage1={item.vintage.vintage1} vintage2={item.vintage.vintage2} vintage3={item.vintage.vintage3}
+            flavour1={item.variations.flavour1} flavour2={item.variations.flavour2} flavour3={item.variations.flavour3}
+            size1={item.size.size1} size2={item.size.size2} size3={item.size.size3}            
+            editRender={setRenderProductsDate}/>))
+
+
+            // console.log(productItem);
+            const productItems = productItem.sort((a, b) => b.props.date - a.props.date);
+            
+            // let productItems = productItem.sort((a, b) => new Date(...a.date.split('/').reverse()) - new Date(...b.date.split('/').reverse()));
+            setReadProductsDate(productItems);
+            setRenderProductsDate(false);
+        });
+    }, [renderProductsDate]);
+
+
+    let rating = Math.floor(Math.random(2) * 5);
+
     return (
         <>
             <Navbar/>
             <div className='product-holder'>
-                <div onClick={dashboard}>back</div>
+                {/* <div onClick={dashboard}>back</div> */}
                 <img className='product-wine-img' src={imgURL}/>
 
                 <h2 className='product-title'>{productData.productName}</h2>
@@ -151,8 +194,9 @@ const ProductPage = (props) => {
 
                 <div className='rating-con'>
                     <img className='star-icon' src='./images/star.png'/>
-                    <p className='rating-text'>{productData.stock}</p>
+                    <p className='rating-text'>2.5</p>
                 </div>
+                <p className='product-description'>Available Stock: {productData.stock}</p>
 
                 <h3 className='product-description'>Description</h3>
                 <p className='product-des'>{productData.productDescription}</p>
@@ -173,9 +217,9 @@ const ProductPage = (props) => {
 
                 <select className='product-select' name="variations" id="variations" onChange={(e) => setSelectedVariations(e.target.value)} required>
                     <option value="" selected disabled hidden>Select an Option</option>
-                    <option value="blackberry">blackberry</option>
-                    <option value="cherry">cherry</option>
-                    <option value="plum">plum</option>
+                    <option value="blackberry">Blackberry</option>
+                    <option value="cherry">Cherry</option>
+                    <option value="plum">Plum</option>
                 </select>
 
                 <p className='product-variations'>Size</p>
@@ -189,10 +233,10 @@ const ProductPage = (props) => {
 
                 <p className='product-variations'>Quantity</p>
                 <input className="edit-product-qty" min="1" max="10" required name="qty" defaultValue={1} type="number" placeholder="Qty" onChange={(e) => setSelectedQty(e.target.value)}/>
-
+                <h3 className='total-product'>Total R {totalPrice}</h3>
                 <button  type="submit" className='cart-button'>Add to Cart</button>
                 <p className='product-delivery'>R60 for delivery</p>
-                <h3 className='product-variations'>Total R {totalPrice}</h3>
+                
             </form>
 
             <div className="divider">
@@ -200,7 +244,7 @@ const ProductPage = (props) => {
                     New arivals</p>
             </div>
             <div className="card-con-horizontal ">
-                
+                {topTen}
             </div>
 
             <Footer/>

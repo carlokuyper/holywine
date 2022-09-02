@@ -144,6 +144,16 @@
     text-align: right;
 }
 
+.checkout-text-right-blue {
+    float: right;
+    margin: 0;
+    margin-top: 8.5%;
+    width: 100%;
+    text-align: right;
+    color: #2798D3;
+}
+
+
 .checkout-text-right-1{
     float: right;
     margin: 0;
@@ -178,7 +188,7 @@
 
 .checkout-user-con{
     width: 30%;
-    height: auto;
+    height: 310px;
     padding-bottom: 1%;
     margin-top: .5%;
     margin-bottom: .5%;
@@ -192,14 +202,22 @@
     float: left;
     width: 100%;
     margin: 0;
-    margin-top: 3%;
+    margin-top: 4%;
     margin-left: 4%;
+}
+
+.checkout-left1{
+    float: left;
+    width: 50%;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 15px;
 }
 
 .small-checkout-con{
     width: 100%;
     float: left;
-
+    margin-top: 0%;
     margin-left: 3.5%;
 }
 
@@ -207,6 +225,13 @@
     width: 45%;
     float: left;
     margin-top: 2%;
+    margin-left: 3.5%;
+}
+
+.small-checkout-con2{
+    width: 100%;
+    float: left;
+    margin-top: 3%;
     margin-left: 3.5%;
 }
 
@@ -220,6 +245,18 @@
     margin-top: 3%;
     margin-left: 15px;
 }
+
+.checkout-input-small-1{
+    height: 30px;
+    width: 80%;
+    padding-left: 2%;
+    border-radius: 6px;
+    border: none;
+    float: left;
+    margin-top: 3%;
+    margin-left: 15px;
+}
+
 
 .checkout-user-button{
     width: 30%;

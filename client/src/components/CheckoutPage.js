@@ -14,6 +14,7 @@ const CheckoutPage = (props) => {
     // Read all the DB Items 
     const [readProducts, setReadProducts] = useState();
     const [renderProducts, setRenderProducts] = useState(false);
+    const [finalPrice, setFinalPrice] = useState()
 
     useEffect(()=>{
     Axios.get('http://localhost:5000/api/allCart')
@@ -23,13 +24,22 @@ const CheckoutPage = (props) => {
       productName={item.productName} productBrand={item.productBrand} productDescription={item.productDescription}
        
       price={item.price} image={item.image} vintage={item.vintage} variations={item.variations} size={item.size} qty={item.qty} 
-      
       editRender={setRenderProducts}/>);
+      const totalPrice = data.map( e => e.totalPrice).reduce((prev, curr, indx) => {return prev + curr}, 0)
+    //   const total = price.reduce()
+    const price = data.map( e => e.price)
+      
+    setFinalPrice(totalPrice + price)
 
       setReadProducts(productItem);
       setRenderProducts(false);
     });
     }, [renderProducts]);
+    console.log(finalPrice)
+
+    const buyItems = () => {
+        sessionStorage.setItem('testing', finalPrice);
+    }
 
     let defaultFormVals = ["name", "price", "image", "vintage", "variations", "size", "qty"];
 
