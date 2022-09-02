@@ -141,7 +141,7 @@ Initial Wireframe
 
 Product Page
 
-![image4](https://github.com/carlokuyper/holywine/blob/main/images/Products.png
+![image4](https://github.com/carlokuyper/holywine/blob/main/images/Products.png)
 
 Products Page
 
