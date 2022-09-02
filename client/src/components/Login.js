@@ -73,7 +73,7 @@ const Login = () => {
                 <input className="passbar" type="password" placeholder="Password" label="Password" name="password" onChange={getValues}/>
                 
                 <button className='sign-button' type="submit" >Sign In</button>
-                <div className='sign-up-button' onClick={signUp}>Sign up?</div>
+                <a href='/Register'><div className='sign-up-button' onClick={signUp}>Sign up?</div></a>
             </form>
         </div>
     );
