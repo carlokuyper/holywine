@@ -65,7 +65,7 @@
 <!--PROJECT DESCRIPTION-->
 ## About the Project
 <!-- header image of project -->
-![image1](images\Carlo_Kuyper_180145_Mockup (1).png)
+![image1](https://github.com/carlokuyper/holywine/blob/main/images/Carlo_Kuyper_180145_Mockup%20(1).png)
 
 ### Project Description
 
@@ -118,7 +118,7 @@ Run the following in the command-line to install all the required dependencies:
 ## Features and Functionality
 
 <!-- note how you can use your gitHub link. Just make a path to your assets folder -->
-![image2](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Mockup/Timeline%20Mockup.png)
+![image2](https://github.com/carlokuyper/holywine/blob/main/images/Carlo_Kuyper_180145_Mockup%20(3).png)
 
 ### Make and manage everything! 
 
@@ -135,17 +135,17 @@ The `Conceptual Process` is the process I used to create the final website. I st
 
 Initial Wireframe
 
-![image3](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Wireframes/Wireframe%20%20(1).png)
+![image3](https://github.com/carlokuyper/holywine/blob/main/images/Landing%20page.png)
 
 ### Final UI
 
-Initial Design 
+Product Page
 
-![image4](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Wireframes/High%20Q%20Wireframe%20%20(1).png)
+![image4](https://github.com/carlokuyper/holywine/blob/main/images/Products.png
 
-Final Design 
+Products Page
 
-![image5](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Wireframes/High%20Q%20Wireframe%20%20(6).png)
+![image5](https://github.com/carlokuyper/holywine/blob/main/images/Product%20page.png)
 
 <!-- DEVELOPMENT PROCESS -->
 ## Development Process
@@ -191,11 +191,11 @@ Additional features that I implemented into the brief.
 
 ### Mockups
 
-![image6](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Mockup/Home%20Mockup.png)
+![image6](https://github.com/carlokuyper/holywine/blob/main/images/Carlo_Kuyper_180145_Mockup%20(4).png)
 
 <br>
 
-![image7](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Mockup/Vehicle%20Mockup.png)
+![image7](https://github.com/carlokuyper/holywine/blob/main/images/Carlo_Kuyper_180145_Mockup%20(2).png)
 
 
 <!-- AUTHORS -->
