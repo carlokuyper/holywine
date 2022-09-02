@@ -65,7 +65,7 @@
 <!--PROJECT DESCRIPTION-->
 ## About the Project
 <!-- header image of project -->
-![image1](https://github.com/carlokuyper/starwars_web/blob/main/src/img/Mockup/Home%20Mockup.png)
+![image1](images\Carlo_Kuyper_180145_Mockup (1).png)
 
 ### Project Description
 
