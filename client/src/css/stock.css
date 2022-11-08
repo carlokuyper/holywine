@@ -15,6 +15,7 @@
     margin-right: 1%; 
     margin-top: .5%; 
     margin-bottom: .5%;
+    padding-bottom: .25%;
     background-color: #222126;
     border-radius: 5px;
     display: inline-block;
@@ -112,7 +113,7 @@
 .edit-con{
     width: 55%;
     float: right;
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .edit-img{

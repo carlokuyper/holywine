@@ -103,7 +103,8 @@ const StockModal = (props) => {
             console.log(error);
             })
             props.close();
-        }
+            window. location. reload(false);
+    }
 
 
         const closeModal = () => {

@@ -22,4 +22,4 @@ addUser.pre('save', async function(next){
 })
 
 
-module.exports = mongoose.model('users', addUser);
+module.exports = mongoose.model('wineUsers', addUser);
